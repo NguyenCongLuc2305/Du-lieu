@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLDAModelStoreContainer" CdmEntityContainer="QLDAEntities">
+    <EntitySetMapping Name="projects">
+      <EntityTypeMapping TypeName="QLDAModel.project">
+        <MappingFragment StoreEntitySet="projects">
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="start" ColumnName="start" />
+          <ScalarProperty Name="end" ColumnName="end" />
+          <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="studens">
+      <EntityTypeMapping TypeName="QLDAModel.studen">
+        <MappingFragment StoreEntitySet="studens">
+          <ScalarProperty Name="studen_id" ColumnName="studen_id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="class" ColumnName="class" />
+          <ScalarProperty Name="faculty" ColumnName="faculty" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teachers">
+      <EntityTypeMapping TypeName="QLDAModel.teacher">
+        <MappingFragment StoreEntitySet="teachers">
+          <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="faculty" ColumnName="faculty" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="education" ColumnName="education" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

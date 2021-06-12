@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="projects">
+    <Key>
+      <PropertyRef Name="project_id" />
+    </Key>
+    <Property Name="project_id" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="start" Type="date" />
+    <Property Name="end" Type="date" />
+    <Property Name="teacher_id" Type="nchar" MaxLength="50" />
+    <Property Name="student_id" Type="nchar" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="studens">
+    <Key>
+      <PropertyRef Name="studen_id" />
+    </Key>
+    <Property Name="studen_id" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="image" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="age" Type="date" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="class" Type="nvarchar" MaxLength="50" />
+    <Property Name="faculty" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nchar" MaxLength="12" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="teachers">
+    <Key>
+      <PropertyRef Name="teacher_id" />
+    </Key>
+    <Property Name="teacher_id" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="image" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="age" Type="date" />
+    <Property Name="faculty" Type="nvarchar" MaxLength="50" />
+    <Property Name="subject" Type="nvarchar" MaxLength="50" />
+    <Property Name="education" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nchar" MaxLength="15" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'new.dbo.users' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="users">
+          <Property Name="id" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+  <Association Name="FK_projects_studens">
+    <End Role="studens" Type="Self.studens" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="studens">
+        <PropertyRef Name="studen_id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_teachers">
+    <End Role="teachers" Type="Self.teachers" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teachers">
+        <PropertyRef Name="teacher_id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="teacher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLDAModelStoreContainer">
+    <EntitySet Name="projects" EntityType="Self.projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="studens" EntityType="Self.studens" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="teachers" EntityType="Self.teachers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_projects_studens" Association="Self.FK_projects_studens">
+      <End Role="studens" EntitySet="studens" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_teachers" Association="Self.FK_projects_teachers">
+      <End Role="teachers" EntitySet="teachers" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

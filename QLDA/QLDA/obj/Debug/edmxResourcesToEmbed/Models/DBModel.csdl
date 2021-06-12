@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="project">
+    <Key>
+      <PropertyRef Name="project_id" />
+    </Key>
+    <Property Name="project_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="start" Type="DateTime" Precision="0" />
+    <Property Name="end" Type="DateTime" Precision="0" />
+    <Property Name="teacher_id" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="student_id" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="studen" Relationship="Self.FK_projects_studens" FromRole="projects" ToRole="studens" />
+    <NavigationProperty Name="teacher" Relationship="Self.FK_projects_teachers" FromRole="projects" ToRole="teachers" />
+  </EntityType>
+  <EntityType Name="studen">
+    <Key>
+      <PropertyRef Name="studen_id" />
+    </Key>
+    <Property Name="studen_id" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="age" Type="DateTime" Precision="0" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="faculty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_studens" FromRole="studens" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="teacher">
+    <Key>
+      <PropertyRef Name="teacher_id" />
+    </Key>
+    <Property Name="teacher_id" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="age" Type="DateTime" Precision="0" />
+    <Property Name="faculty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="projects" Relationship="Self.FK_projects_teachers" FromRole="teachers" ToRole="projects" />
+  </EntityType>
+  <Association Name="FK_projects_studens">
+    <End Role="studens" Type="Self.studen" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="studens">
+        <PropertyRef Name="studen_id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_teachers">
+    <End Role="teachers" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teachers">
+        <PropertyRef Name="teacher_id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="teacher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLDAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="projects" EntityType="Self.project" />
+    <EntitySet Name="studens" EntityType="Self.studen" />
+    <EntitySet Name="teachers" EntityType="Self.teacher" />
+    <AssociationSet Name="FK_projects_studens" Association="Self.FK_projects_studens">
+      <End Role="studens" EntitySet="studens" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_teachers" Association="Self.FK_projects_teachers">
+      <End Role="teachers" EntitySet="teachers" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
