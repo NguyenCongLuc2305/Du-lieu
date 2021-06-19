@@ -1,0 +1,157 @@
+﻿@model QLDA.Models.student
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    fieldset {
+        background-color: #eeeeee;
+        border: 1px solid;
+    }
+
+    legend {
+        background-color: gray;
+        color: white;
+        padding: 5px 10px;
+    }
+
+    input {
+        min-width: 200px;
+    }
+
+    select {
+        min-width: 200px;
+    }
+
+    fieldset {
+        display: block;
+        margin-left: 70px;
+        margin-right: 2px;
+        padding-top: 0.35em;
+        padding-bottom: 0.625em;
+        padding-left: 2em;
+        padding-right: 0.75em;
+        border: 2px groove (internal value);
+        max-width: 700px;
+    }
+    table, th, td {
+        border: 50px;
+      
+    }
+    label {
+      
+        position: relative;
+        margin: 0;
+        line-height: 20px;
+    }
+    ​
+    img {
+        max-width: 150px;
+    }
+
+    input[type=file] {
+        padding: 10px;
+        background: #2d2d2d;
+      
+    }
+</style>
+<form action="/Student/Create" method="post" enctype="multipart/form-data">
+
+
+    <fieldset>
+
+        <legend>Thêm mới sinh viên:</legend>
+        <table style="border-inline:1px;">
+            <tr>
+                <td>
+
+                    <label>Mã sinh viên:</label>
+                    <br>
+                    <input type="text" id="student_id" name="student_id">
+                    <br>
+
+                </td>
+                <td>
+                    <label>Tên:</label>
+                    <br>
+                    <input type="text" id="name" name="name">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Ngày sinh:</label>
+                    <br>
+                    <input type="text" id="age" name="age">
+                </td>
+                <td>
+                    <br>
+                    <label>Giới tính:</label>
+                    <br>
+                    <label class="light">Nam:</label>
+                    <input type="radio" id="gender" value="Nam" name="gender"><br />
+                    <label class="light">Nữ:</label>
+                    <input type="radio" id="gender" value="Nữ" name="gender">
+
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <label>Địa chỉ:</label><br>
+
+                    <input type="text" id="address" name="address">
+
+                </td>
+
+            </tr>
+            <tr>
+
+                <td>
+                    <label>Khoa:</label>
+                    <br>
+                    <select name="faculty" id="faculty" onchange="getFaculty();">
+                        <option value="">Chọn Khoa</option>
+                        <option value="CNTT">Công nghệ thông tin</option>
+                        <option value="TDH">Tự động hóa</option>
+                        <option value="TTDPT">TT đa phương tiện</option>
+                        <option value="QTVL">Quản trị văn phòng</option>
+                    </select>
+                    <br>
+                </td>
+                <td>
+                    <label>Lớp:</label>
+                    <br>
+                    <select name="_class" id="_class">
+                        <option value="">Chọn lớp</option>s
+                    </select>
+                    <br>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Ảnh:</label>
+                    <br>
+                    <input type='file' onchange="readURL(this);" name="ImageFile" id="ImageFile"/>
+                    <a href="https://via.placeholder.com/150"><img id="blah" src="http://placehold.it/150" alt="your image" /></a>
+                 
+
+                   
+                    <br>
+                </td>
+                <td>
+                    <label>Số điện thoại:</label>
+                    <br>
+                    <input type="text" id="phone" name="phone">
+                    <br>
+
+                </td>
+            </tr>
+           
+        </table>
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 400px">Thêm</button>
+</form>

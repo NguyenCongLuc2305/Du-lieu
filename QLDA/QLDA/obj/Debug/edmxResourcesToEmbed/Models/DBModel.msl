@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="QLDAModelStoreContainer" CdmEntityContainer="QLDAEntities">
+  <EntityContainerMapping StorageEntityContainer="newModelStoreContainer" CdmEntityContainer="QLDAEntities">
     <EntitySetMapping Name="projects">
-      <EntityTypeMapping TypeName="QLDAModel.project">
+      <EntityTypeMapping TypeName="newModel.project">
         <MappingFragment StoreEntitySet="projects">
           <ScalarProperty Name="project_id" ColumnName="project_id" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -10,12 +10,11 @@
           <ScalarProperty Name="end" ColumnName="end" />
           <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
           <ScalarProperty Name="student_id" ColumnName="student_id" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="studens">
-      <EntityTypeMapping TypeName="QLDAModel.studen">
+      <EntityTypeMapping TypeName="newModel.studen">
         <MappingFragment StoreEntitySet="studens">
           <ScalarProperty Name="studen_id" ColumnName="studen_id" />
           <ScalarProperty Name="image" ColumnName="image" />
@@ -26,12 +25,11 @@
           <ScalarProperty Name="faculty" ColumnName="faculty" />
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="teachers">
-      <EntityTypeMapping TypeName="QLDAModel.teacher">
+      <EntityTypeMapping TypeName="newModel.teacher">
         <MappingFragment StoreEntitySet="teachers">
           <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
           <ScalarProperty Name="image" ColumnName="image" />
@@ -43,7 +41,6 @@
           <ScalarProperty Name="education" ColumnName="education" />
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

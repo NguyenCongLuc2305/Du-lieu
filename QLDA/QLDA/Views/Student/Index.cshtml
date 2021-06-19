@@ -1,81 +1,240 @@
-﻿@model IEnumerable<QLDA.Models.studen>
+﻿@model  IPagedList<QLDA.Models.student>
+@using PagedList;
 
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    button {
+        max-height: 31px;
+        max-width: 35px;
+    }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Add")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.studen_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.@class)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.faculty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th></th>
-    </tr>
+    .fas fa-trash {
+        color: red;
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.studen_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.@class)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.faculty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.ID  }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+   
+    li {
+        display: inline;
+    }
 
-</table>
+    ul {
+        padding: 10px;
+    }
+
+    li:last-child {
+        margin-left: 200px;
+        position:relative;
+    }
+</style>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table">
+                    @using (Html.BeginForm("Index", "Student", FormMethod.Get))
+                    {
+                        <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light small" id="txtkeyword" name="SearchString" placeholder="Tìm kiếm..."
+                                       aria-label="SearchString" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <a href="/Student/Create" type="button" class="btn btn-primary" style="margin-left:50px; padding:3.5px 0px 3.5px 0px;"> <i class="fas fa-user-plus"></i>Thêm mới sinh viên</a>
+                    <br />
+                    <br />
+                    <caption>List of students</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Mã sinh viên</th>
+                            <th scope="col">Họ tên</th>
+                            <th scope="col">Ngày sinh</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Điện thoại</th>
+                            <th scope="col">Khoa</th>
+                            <th scope="col">Lớp</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tbody>
+                            <tr id="row_@item.student_id">
+
+
+                                <td>@item.student_id</td>
+                                <td>@item.name</td>
+                                <td>@item.age.ToString("dd/MM/yyyy")</td>
+                                <td>@item.address</td>
+                                <td>@item.phone</td>
+                                <td>@item.faculty</td>
+                                <td>@item._class</td>
+
+                                <td>
+            @*<img src="@Url.Content(item.image)" width="40" height="25" />*@
+        </td>
+                                <td>
+                                    <script>
+                                        var stdid = "@item.student_id";
+                                        document.write("<button title='Xóa' class='btn btn-danger' onclick='ConfirmDelete(stdid);'><i class='fas fa-trash'></i></button>")
+                                    </script> |
+                                    <a href="/Student/Edit/@item.student_id" type="button" title="Sửa" class="btn btn-primary" style=" max-height: 31px; max-width: 35px;"><i class="fas fa-pen"></i></a> |
+                                    <script>
+                                        var stdid = "@item.student_id";
+                                        document.write("<button type='button' title='Chi tiết' data-toggle='modal' onclick='getbyID(stdid);'class='btn btn-primary'><i class='fa fa-info-circle'></i></button>")
+                                    </script>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                </table>
+
+                <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h4 class="modal-title" id="myModalLabel">Chi tiết sinh viên</h4>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <ul>
+                                    <li for="student_id">Mã sinh viên:</li>
+                                    <li id="studentid"></li>
+                                </ul>
+
+                                <ul>
+                                    <li for="name">Họ tên:</li>
+                                    <li id="name"></li>
+                                </ul>
+
+                                <ul>
+                                    <li for="age">Ngày sinh:</li>
+                                    <li id="age"></li>
+                                </ul>
+                                <ul>
+                                    <li for="gender">Giới tính:</li>
+                                    <li id="gender"></li>
+                                </ul>
+
+                                <ul>
+                                    <li for="address">Địa chỉ:</li>
+                                    <li id="address"></li>
+                                </ul>
+                                <ul>
+                                    <li for="faculty">Khoa:</li>
+                                    <li id="faculty"></li>
+                                </ul>
+                                <ul>
+                                    <li for="image">Ảnh:</li>
+                                    <li >
+                                        <img id="image">
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li for="_class">Lớp:</li>
+                                    <li id="_class"></li>
+                                </ul>
+                                <ul>
+                                    <li for="email">Email:</li>
+                                    <li id="email"></li>
+                                </ul>
+                                <ul>
+                                    <li for="phone">số điện thoại</li>
+                                    <li id="phone"></li>
+                                </ul>
+
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" type="button" class="btn btn-default" data-dismiss="modal">Đóng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                                <h3 class="modal-title">Xóa sinh viên</h3>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Bạn có chắc muốn xóa? </h4>
+
+                                <div style="text-align:center;display:none" id="loaderDiv">
+                                    <img src="~/assets/assets/images/200.gif" style="height:200px;width:200px" />
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="btn btn-default" data-dismiss="modal">Không</a>
+                                <a href="#" class="btn btn-success" onclick="DeleteStudent()">Có</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <input type="hidden" id="hiddenStudentId" />
+
+            </div>
+
+            <script>
+
+
+
+                var ConfirmDelete = function (StudentId) {
+                    $("#hiddenStudentId").val(StudentId);
+                    $("#myModal").modal('show');
+                }
+
+                var DeleteStudent = function () {
+
+                    $("#loaderDiv").show();
+
+                    var stdId = $("#hiddenStudentId").val();
+
+                    $.ajax({
+
+                        type: "POST",
+                        url: "/Student/Delete",
+                        data: { StudentId: stdId },
+                        success: function (result) {
+                            $("#loaderDiv").hide();
+                            $("#myModal").modal("hide");
+                            $("#row_" + stdId).remove();
+
+                        }
+
+                    })
+
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+
+<div style="margin-left:35px; text-align:center;">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFIlter = ViewBag.currentFIlter }))
+</div>

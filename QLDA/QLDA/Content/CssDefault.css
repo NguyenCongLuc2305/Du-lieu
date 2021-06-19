@@ -1,0 +1,23 @@
+﻿
+
+td, th {
+    padding-left: 8px
+}
+
+tbody tr {
+    height: 48px;
+    border-bottom: 0px solid #E3F1D5;
+   
+}
+td, th {
+    text-align: left
+}
+
+@media screen and (min-width: 676px) {
+    .modal-dialog
+
+{
+    max-height:600px;
+    max-width: 500px; /* New width for default modal */
+}
+}
