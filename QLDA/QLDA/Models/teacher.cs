@@ -35,7 +35,7 @@ namespace QLDA.Models
         public string address { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? age { get; set; }
+        public DateTime age { get; set; }
 
         [StringLength(50)]
         public string faculty { get; set; }
@@ -48,5 +48,6 @@ namespace QLDA.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<project> projects { get; set; }
+        public object ImageFile { get; internal set; }
     }
 }

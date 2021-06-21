@@ -139,7 +139,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Businesslayer\StudenBusinesslayer.cs" />
+    <Compile Include="Businesslayer\TeacherBusinesslayer.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,6 +170,7 @@
     <Content Include="assets\assets\images\users\2.jpg" />
     <Content Include="assets\assets\images\users\4.jpg" />
     <Content Include="assets\assets\images\users\5.jpg" />
+    <Content Include="assets\assets\images\users\luc.jpg" />
     <Content Include="assets\assets\libs\bootstrap\dist\css\bootstrap-grid.css" />
     <Content Include="assets\assets\libs\bootstrap\dist\css\bootstrap-grid.min.css" />
     <Content Include="assets\assets\libs\bootstrap\dist\css\bootstrap-grid.rtl.css" />
@@ -338,6 +341,7 @@
     <Content Include="assets\dist\js\jquery-3.6.0.min.js" />
     <Content Include="assets\dist\js\jquery-ui.js" />
     <Content Include="assets\dist\js\Student.js" />
+    <Content Include="assets\dist\js\Teacher.js" />
     <Content Include="assets\FontAwesome\css\all.css" />
     <Content Include="assets\FontAwesome\css\all.min.css" />
     <Content Include="assets\FontAwesome\css\brands.css" />
@@ -2315,6 +2319,7 @@
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
