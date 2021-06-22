@@ -43,7 +43,6 @@ function getbyID(stdid) {
     return false;
 }
 //function for updating employee's record  
-
 function getFaculty() {
     var faculty = $('#faculty').val()
 
@@ -52,7 +51,7 @@ function getFaculty() {
     html += '<option>Chọn lớp</option>';
         $('#_class').html(html);
        
-    }else if(faculty == 'CNTT') {
+    } else if (faculty == 'CNTT') {
         var html = '';
         html += '<option>Chọn lớp</option>';
         html += '<option>Công nghệ thông tin K17A</option>';
@@ -62,7 +61,7 @@ function getFaculty() {
         html += '<option>Công nghệ thông tin K17E</option>';
         html += '<option>Công nghệ thông tin K17H</option>';
         $('#_class').html(html);
-    }else if (faculty == 'TDH') {
+    } else if (faculty == 'TDH') {
         var html = '';
         html += '<option>Chọn lớp</option>';
         html += '<option>Tự động hóa K17A</option>';
@@ -72,7 +71,7 @@ function getFaculty() {
         html += '<option>Tự động hóa K17E</option>';
         html += '<option>Tự động hóa K17H</option>';
         $('#_class').html(html);
-    }else if(faculty == 'TTDPT') {
+    } else if (faculty == 'TTDPT') {
         var html = '';
         html += '<option>Chọn lớp</option>';
         html += '<option>TT đa phương tiện K17A</option>';
@@ -82,7 +81,7 @@ function getFaculty() {
         html += '<option>TT đa phương tiện K17E</option>';
         html += '<option>TT đa phương tiện K17H</option>';
         $('#_class').html(html);
-    } else if(faculty == 'QTVL') {
+    } else if (faculty == 'QTVP') {
         var html = '';
         html += '<option>Chọn lớp</option>';
         html += '<option>Quản trị văn phòng K17A</option>';

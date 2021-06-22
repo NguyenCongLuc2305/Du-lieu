@@ -1,4 +1,4 @@
-﻿@model QLDA.Models.student
+﻿@model QLDA.Models.teacher
 
 @{
 
@@ -35,17 +35,18 @@
         border: 2px groove (internal value);
         max-width: 700px;
     }
+
     table, th, td {
         border: 50px;
-      
     }
+
     label {
-      
         position: relative;
         margin: 0;
         line-height: 20px;
     }
-    ​
+
+
     img {
         max-width: 150px;
     }
@@ -53,29 +54,28 @@
     input[type=file] {
         padding: 10px;
         background: #2d2d2d;
-      
     }
 </style>
-<form action="/Student/Create" method="post" enctype="multipart/form-data">
+<form action="/Teacher/Create" method="post">
 
 
     <fieldset>
 
-        <legend>Thêm mới sinh viên:</legend>
+        <legend>Sửa giáo viên:</legend>
         <table style="border-inline:1px;">
             <tr>
                 <td>
 
-                    <label>Mã sinh viên:</label>
+                    <label>Mã giáo viên:</label>
                     <br>
-                    <input type="text" id="student_id" name="student_id">
+                    <input type="text" value="@Model.teacher_id" id="teacher_id" name="teacher_id">
                     <br>
 
                 </td>
                 <td>
                     <label>Tên:</label>
                     <br>
-                    <input type="text" id="name" name="name">
+                    <input type="text" value="@Model.name" id="name" name="name">
                     <br>
                 </td>
             </tr>
@@ -83,79 +83,68 @@
                 <td>
                     <label>Ngày sinh:</label>
                     <br>
-                    <input type="text" id="age" name="age">
+                    <input type="text" value="@Model.age" id="age" name="age">
+                </td>
+                <td>
+                    <label>Địa chỉ:</label><br>
+                    <input type="text" value="@Model.address" id="address" name="address">
+                </td>
+
+            </tr>
+            <tr>
+
+                <td>
+                    <label>Trình độ</label><br />
+                    <input type="text" value="@Model.education" id="education" name="education" />
                 </td>
                 <td>
                     <br>
                     <label>Giới tính:</label>
                     <br>
                     <label class="light">Nam:</label>
-                    <input type="radio" id="gender" value="Nam" name="gender"><br />
+                    <input type="radio" id="gender" value="@Model.gender" name="gender"><br />
                     <label class="light">Nữ:</label>
-                    <input type="radio" id="gender" value="Nữ" name="gender">
+                    <input type="radio" id="gender" value="@Model.gender" name="gender">
 
                 </td>
-            </tr>
-            <tr>
 
-                <td>
-                    <label>Địa chỉ:</label><br>
-
-                    <input type="text" id="address" name="address">
-
-                </td>
-                <td>
-                    <label>Email:</label>
-                    <input type="text" id="email" name="email"/>
-                </td>
 
             </tr>
             <tr>
-
+                <td>
+                    <label>Dạy môn</label><br />
+                    <input type="text" value="@Model.subject" id="subject" name="subject" />
+                </td>
                 <td>
                     <label>Khoa:</label>
                     <br>
-                    <select name="faculty" id="faculty" onchange="getFaculty();">
-                        <option value="">Chọn khoa</option>
+                    <select name="faculty" value="@Model.faculty" id="faculty" onchange="getFaculty();">
+                        <option value="">Chọn Khoa</option>
                         <option value="CNTT">Công nghệ thông tin</option>
                         <option value="TDH">Tự động hóa</option>
                         <option value="TTDPT">TT đa phương tiện</option>
-                        <option value="QTVP">Quản trị văn phòng</option>
+                        <option value="QTVL">Quản trị văn phòng</option>
                     </select>
                     <br>
                 </td>
-                <td>
-                    <label>Lớp:</label>
-                    <br>
-                    <select name="_class" id="_class">
-                        <option value="">Chọn lớp</option>s
-                    </select>
-                    <br>
 
-                </td>
             </tr>
             <tr>
                 <td>
                     <label>Ảnh:</label>
                     <br>
-                    <input type='file' onchange="readURL(this);" name="ImageFile" id="ImageFile"/>
-                   <img id="blah" style="width:150px;height:150px" alt="your image" />
-                 
-
-                   
+                    <input type='file' value="@Model.image" onchange="readURL(this);" name="ImageFile" id="ImageFile" />
+                    <img id="blah" style="width:150px;height:150px" alt="your image" />
                     <br>
                 </td>
                 <td>
-                    <label>Số điện thoại:</label>
-                    <br>
-                    <input type="text" id="phone" name="phone">
-                    <br>
-
+                    <label>Số điện thoại</label>
+                    <input type="text" value="@Model.phone" id="phone" name="phone" />
                 </td>
+
             </tr>
-           
         </table>
     </fieldset>
 
-    <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 400px">Thêm</button>
+    <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 400px">Sửa</button>
 </form>

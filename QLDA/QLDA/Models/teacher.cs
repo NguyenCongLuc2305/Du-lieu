@@ -5,6 +5,7 @@ namespace QLDA.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     [Table("teacher")]
     public partial class teacher
@@ -25,8 +26,11 @@ namespace QLDA.Models
         [StringLength(50)]
         public string phone { get; set; }
 
-        [StringLength(50)]
+        [StringLength(500)]
         public string image { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
 
         [StringLength(50)]
         public string name { get; set; }
@@ -48,6 +52,7 @@ namespace QLDA.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<project> projects { get; set; }
-        public object ImageFile { get; internal set; }
+
+       
     }
 }

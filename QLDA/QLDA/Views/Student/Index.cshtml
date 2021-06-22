@@ -60,10 +60,10 @@
                             <th scope="col">Mã sinh viên</th>
                             <th scope="col">Họ tên</th>
                             <th scope="col">Ngày sinh</th>
-                            <th scope="col">Địa chỉ</th>
                             <th scope="col">Điện thoại</th>
                             <th scope="col">Khoa</th>
                             <th scope="col">Lớp</th>
+                            <th scope="col">Ảnh</th>
                             <th>Action</th>
 
                         </tr>
@@ -77,13 +77,12 @@
                                 <td>@item.student_id</td>
                                 <td>@item.name</td>
                                 <td>@item.age.ToString("dd/MM/yyyy")</td>
-                                <td>@item.address</td>
                                 <td>@item.phone</td>
                                 <td>@item.faculty</td>
                                 <td>@item._class</td>
 
                                 <td>
-            @*<img src="@Url.Content(item.image)" width="40" height="25" />*@
+            <img src="@Url.Content(item.image)" width="40" height="25" />
         </td>
                                 <td>
                                     <script>

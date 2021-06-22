@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QLDA.Models;
 using PagedList;
 using QLDA.Businesslayer;
-using QLDA.Models;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace QLDA.Controllers
 {
@@ -55,6 +56,7 @@ namespace QLDA.Controllers
             return View();
         }
         [HttpPost]
+      
         public ActionResult Create(teacher std)
         {
             if (ModelState.IsValid)
@@ -64,12 +66,27 @@ namespace QLDA.Controllers
                 fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
                 std.image = "~/Image/" + fileName;
                 fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-                object p = std.ImageFile.SaveAs(fileName);
+                std.ImageFile.SaveAs(fileName);
                 db.teachers.Add(std);
                 db.SaveChanges();
             }
             ModelState.Clear();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Edit(string id)
+        {
+            var teacher = db.teachers.Where(x => x.teacher_id == id).FirstOrDefault();
+            return View(teacher);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(teacher std)
+        {
+
+          new TeacherBusinesslayer().Update(std);
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -1,5 +1,4 @@
 ﻿@model QLDA.Models.student
-
 @{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -61,7 +60,7 @@
 
     <fieldset>
 
-        <legend>Thêm mới sinh viên:</legend>
+        <legend>Sửa sinh viên:</legend>
         <table style="border-inline:1px;">
             <tr>
                 <td>
@@ -83,16 +82,16 @@
                 <td>
                     <label>Ngày sinh:</label>
                     <br>
-                    <input type="text" id="age" name="age">
+                    <input type="text" value="@Model.age" id="age" name="age">
                 </td>
                 <td>
                     <br>
                     <label>Giới tính:</label>
                     <br>
                     <label class="light">Nam:</label>
-                    <input type="radio" id="gender" value="Nam" name="gender"><br />
+                    <input type="radio" id="gender" value="@Model.gender" name="gender"><br />
                     <label class="light">Nữ:</label>
-                    <input type="radio" id="gender" value="Nữ" name="gender">
+                    <input type="radio" id="gender" value="@Model.gender" name="gender">
 
 
                 </td>
@@ -101,31 +100,64 @@
 
                 <td>
                     <label>Địa chỉ:</label><br>
+                    <input type="text" id="address" value="@Model.address" name="address">
 
-                    <input type="text" id="address" name="address">
-
+                </td>
+                <td>
+                    <label>Email:</label>
+                    <input type="text" id="email" value="@Model.email" name="email" />
                 </td>
 
             </tr>
             <tr>
-
+               
                 <td>
                     <label>Khoa:</label>
-                    <br>
-                    <select name="faculty" id="faculty" onchange="getFaculty();">
-                        <option value="">Chọn Khoa</option>
-                        <option value="CNTT">Công nghệ thông tin</option>
-                        <option value="TDH">Tự động hóa</option>
-                        <option value="TTDPT">TT đa phương tiện</option>
-                        <option value="QTVL">Quản trị văn phòng</option>
-                    </select>
+                    <br>@{
+                        if (@Model.faculty == "CNTT")
+                        {
+                            <select name="faculty" id="faculty" onchange="getFaculty();">
+                                <option value="CNTT">Công nghệ thông tin</option>
+                                <option value="TDH">Tự động hóa</option>
+                                <option value="TTDPT">TT đa phương tiện</option>
+                                <option value="QTVP">Quản trị văn phòng</option>
+                            </select>
+                        }
+                        if (@Model.faculty == "TDH")
+                        {
+                            <select name="faculty" id="faculty" onchange="getFaculty();">
+                                <option value="TDH">Tự động hóa</option>
+                                <option value="CNTT">Công nghệ thông tin</option>
+                                <option value="TTDPT">TT đa phương tiện</option>
+                                <option value="QTVP">Quản trị văn phòng</option>
+                            </select>
+                        }
+                        if (@Model.faculty == "TTDPT")
+                        {
+                            <select name="faculty" id="faculty" onchange="getFaculty();">
+                                 <option value="TTDPT">TT đa phương tiện</option>
+                                <option value="TDH">Tự động hóa</option>
+                                <option value="CNTT">Công nghệ thông tin</option>
+                                <option value="QTVP">Quản trị văn phòng</option>
+                            </select>
+                        }
+                        if (@Model.faculty == "QTVP")
+                        {
+                            <select name="faculty" id="faculty" onchange="getFaculty();">
+                                <option value="QTVP">Quản trị văn phòng</option>
+                                <option value="TDH">Tự động hóa</option>
+                                <option value="CNTT">Công nghệ thông tin</option>
+                                <option value="TTDPT">TT đa phương tiện</option>
+                            </select>
+                        }
+                    }
                     <br>
                 </td>
                 <td>
                     <label>Lớp:</label>
                     <br>
                     <select name="_class" id="_class">
-                        <option value="">Chọn lớp</option>s
+                        <option value="">@Model._class</option>s
                     </select>
                     <br>
 
@@ -136,16 +168,13 @@
                     <label>Ảnh:</label>
                     <br>
                     <input type='file' onchange="readURL(this);" />
-                    <a href="https://via.placeholder.com/150"><img id="blah" src="http://placehold.it/150" alt="your image" /></a>
-
-
-
+                    <a href="https://via.placeholder.com/150"><img src="@Model.image" id="blah" alt="your image" /></a>
                     <br>
                 </td>
                 <td>
                     <label>Số điện thoại:</label>
                     <br>
-                    <input type="text" id="phone" name="phone">
+                    <input type="text" value="@Model.phone" id="phone" name="phone">
                     <br>
 
                 </td>
@@ -154,5 +183,5 @@
         </table>
     </fieldset>
 
-    <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 400px">Thêm</button>
+    <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 400px">Sửa</button>
 </form>
