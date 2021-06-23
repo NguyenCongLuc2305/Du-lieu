@@ -55,7 +55,7 @@
         background: #2d2d2d;
     }
 </style>
-<form action="/Student/Create" method="post">
+<form action="/Student/Edit" method="post">
 
 
     <fieldset>
@@ -82,7 +82,7 @@
                 <td>
                     <label>Ngày sinh:</label>
                     <br>
-                    <input type="text" value="@Model.age" id="age" name="age">
+                    <input type="date" value="@Model.age" id="age" name="age">
                 </td>
                 <td>
                     <br>
@@ -167,8 +167,8 @@
                 <td>
                     <label>Ảnh:</label>
                     <br>
-                    <input type='file' onchange="readURL(this);" />
-                    <a href="https://via.placeholder.com/150"><img src="@Model.image" id="blah" alt="your image" /></a>
+                    <input required type='file' onchange="readURL(this);" />
+                    <a href="https://via.placeholder.com/150"><img src="@Model.image"  id="blah" alt="your image" /></a>
                     <br>
                 </td>
                 <td>

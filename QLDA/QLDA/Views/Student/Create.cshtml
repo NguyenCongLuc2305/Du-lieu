@@ -68,14 +68,14 @@
 
                     <label>Mã sinh viên:</label>
                     <br>
-                    <input type="text" id="student_id" name="student_id">
+                    <input type="text" required id="student_id" name="student_id">
                     <br>
 
                 </td>
                 <td>
                     <label>Tên:</label>
                     <br>
-                    <input type="text" id="name" name="name">
+                    <input type="text" required id="name" name="name">
                     <br>
                 </td>
             </tr>
@@ -83,16 +83,16 @@
                 <td>
                     <label>Ngày sinh:</label>
                     <br>
-                    <input type="text" id="age" name="age">
+                    <input type="date" required id="age" name="age">
                 </td>
                 <td>
                     <br>
                     <label>Giới tính:</label>
                     <br>
                     <label class="light">Nam:</label>
-                    <input type="radio" id="gender" value="Nam" name="gender"><br />
+                    <input type="radio" id="gender" required value="Nam" name="gender"><br />
                     <label class="light">Nữ:</label>
-                    <input type="radio" id="gender" value="Nữ" name="gender">
+                    <input type="radio" id="gender" required value="Nữ" name="gender">
 
                 </td>
             </tr>
@@ -101,12 +101,12 @@
                 <td>
                     <label>Địa chỉ:</label><br>
 
-                    <input type="text" id="address" name="address">
+                    <input type="text" id="address" required name="address">
 
                 </td>
                 <td>
                     <label>Email:</label>
-                    <input type="text" id="email" name="email"/>
+                    <input type="text" id="email" required name="email"/>
                 </td>
 
             </tr>
@@ -116,11 +116,11 @@
                     <label>Khoa:</label>
                     <br>
                     <select name="faculty" id="faculty" onchange="getFaculty();">
-                        <option value="">Chọn khoa</option>
-                        <option value="CNTT">Công nghệ thông tin</option>
-                        <option value="TDH">Tự động hóa</option>
-                        <option value="TTDPT">TT đa phương tiện</option>
-                        <option value="QTVP">Quản trị văn phòng</option>
+                        <option required value="">Chọn khoa</option>
+                        <option required value="CNTT">Công nghệ thông tin</option>
+                        <option required value="TDH">Tự động hóa</option>
+                        <option required value="TTDPT">TT đa phương tiện</option>
+                        <option required value="QTVP">Quản trị văn phòng</option>
                     </select>
                     <br>
                 </td>
@@ -128,7 +128,7 @@
                     <label>Lớp:</label>
                     <br>
                     <select name="_class" id="_class">
-                        <option value="">Chọn lớp</option>s
+                        <option required value="">Chọn lớp</option>s
                     </select>
                     <br>
 
@@ -138,7 +138,7 @@
                 <td>
                     <label>Ảnh:</label>
                     <br>
-                    <input type='file' onchange="readURL(this);" name="ImageFile" id="ImageFile"/>
+                    <input required type='file' onchange="readURL(this);" name="ImageFile" id="ImageFile"/>
                    <img id="blah" style="width:150px;height:150px" alt="your image" />
                  
 
@@ -148,7 +148,7 @@
                 <td>
                     <label>Số điện thoại:</label>
                     <br>
-                    <input type="text" id="phone" name="phone">
+                    <input required type="text" id="phone" name="phone">
                     <br>
 
                 </td>

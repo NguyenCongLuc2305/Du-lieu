@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using QLDA.Models;
+
 namespace QLDA.Businesslayer
 {
     public class StudentBusinesslayer
@@ -39,6 +41,7 @@ namespace QLDA.Businesslayer
         {
             try
             {
+
                 student refstudent = (student)db.students.Where(x => x.student_id == std.student_id);
                 refstudent.name = std.name;
                 refstudent.address = std.address;

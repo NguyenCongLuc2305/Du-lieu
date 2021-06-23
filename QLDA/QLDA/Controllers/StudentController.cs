@@ -93,6 +93,12 @@ namespace QLDA.Controllers
         public ActionResult Edit(student std)
         {
 
+            string fileName = Path.GetFileNameWithoutExtension(std.ImageFile.FileName);
+            string extension = Path.GetExtension(std.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            std.image = "~/Image/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+            std.ImageFile.SaveAs(fileName);
             var student = new StudentBusinesslayer().Update(std);
             return RedirectToAction("Index");
         }
