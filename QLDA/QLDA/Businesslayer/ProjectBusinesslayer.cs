@@ -12,6 +12,14 @@ namespace QLDA.Businesslayer
         {
             db = new Model1();
         }
+        public List<string> listNameTeacher(string keyword)
+        {
+            return db.teachers.Where(x => x.name.Contains(keyword)).Select(x => x.name).ToList();
+        }
+        public List<string> listNameStudent(string keyword)
+        {
+            return db.students.Where(x => x.name.Contains(keyword)).Select(x => x.name).ToList();
+        }
         public List<string> listName(string keyword)
         {
             return db.projects.Where(x => x.name.Contains(keyword)).Select(x => x.name).ToList();

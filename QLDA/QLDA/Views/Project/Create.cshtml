@@ -1,0 +1,116 @@
+﻿@model QLDA.Models.project
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    fieldset {
+        background-color: #eeeeee;
+        border: 1px solid;
+    }
+
+    legend {
+        background-color: gray;
+        color: white;
+        padding: 5px 10px;
+    }
+
+    input {
+        min-width: 200px;
+    }
+
+    select {
+        min-width: 200px;
+    }
+
+    fieldset {
+        display: block;
+        margin-left: 70px;
+        margin-right: 2px;
+        padding-top: 0.35em;
+        padding-bottom: 0.625em;
+        padding-left: 2em;
+        padding-right: 0.75em;
+        border: 2px groove (internal value);
+        max-width: 700px;
+    }
+
+    table, th, td {
+        border: 50px;
+        
+    }
+
+    label {
+        position: relative;
+        margin: 0;
+        line-height: 20px;
+    }
+    table {
+        border-spacing: 200px 100px;
+    }
+ 
+    img {
+        max-width: 150px;
+    }
+
+    input[type=file] {
+        padding: 10px;
+        background: #2d2d2d;
+    }
+
+</style>
+<form action="/Project/Create" method="post" enctype="multipart/form-data">
+
+
+    <fieldset>
+
+        <legend>Thêm mới đồ án:</legend>
+        <table style="border-inline:1px;">
+            <tr>
+                <td>
+                    <label>Mã đồ án:</label>
+                    <br>
+                    <input type="text" id="project_id" name="project_id" required />
+                    <br>
+                </td>
+                <td>
+                    <label>Tên đồ án:</label>
+                    <br>
+                    <input type="text" id="name" name="name" required />
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Ngày bắt đầu:</label>
+                    <br>
+                    <input type="date" id="start" name="start" required />
+                </td>
+                <td>
+                    <label>Ngày kết thúc:</label><br>
+                    <input type="date" id="end" name="end" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Giáo viên hướng dẫn</label><br />
+                    <input type="text" id="teacher_id" name="teacher_id" required />
+                    
+                </td>
+                <td>
+                    
+                    <label>Sinh viên thực hiện:</label><br>
+                    <input type="text" id="student_id" name="student_id" required />
+
+                </td>
+
+
+
+            </tr>
+          
+        </table>
+    </fieldset>
+    
+    <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 400px">Thêm</button>
+</form>

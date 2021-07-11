@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,6 +38,38 @@ namespace QLDA.Controllers
             model = db.projects.ToList();
 
             return View(model.ToPagedList(pageNumber, PageSize));
+        }
+
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+
+        public ActionResult Create(project pro)
+        {
+            db.projects.Add(pro);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public JsonResult listNameTeacher(string q)
+        {
+            var data = new ProjectBusinesslayer().listNameTeacher(q);
+            return Json(new
+            {
+                data = data,
+                status = true
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult listNameStudent(string q)
+        {
+            var data = new ProjectBusinesslayer().listNameStudent(q);
+            return Json(new
+            {
+                data = data,
+                status = true
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }
