@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -38,5 +39,21 @@ namespace QLDA.Controllers
 
             return View(model.ToPagedList(pageNumber, PageSize));
         }
+
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+
+        public ActionResult Create(teacher std)
+        {
+
+            db.teachers.Add(std);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
