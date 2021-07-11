@@ -138,8 +138,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Businesslayer\ProjectBusinesslayer.cs" />
     <Compile Include="Businesslayer\StudenBusinesslayer.cs" />
     <Compile Include="Businesslayer\TeacherBusinesslayer.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
@@ -340,6 +342,7 @@
     <Content Include="assets\dist\js\jquery-1.12.4.js" />
     <Content Include="assets\dist\js\jquery-3.6.0.min.js" />
     <Content Include="assets\dist\js\jquery-ui.js" />
+    <Content Include="assets\dist\js\pages\Project.js" />
     <Content Include="assets\dist\js\Student.js" />
     <Content Include="assets\dist\js\Teacher.js" />
     <Content Include="assets\FontAwesome\css\all.css" />
@@ -2322,6 +2325,7 @@
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\Create.cshtml" />
     <Content Include="Views\Teacher\Edit.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -59,8 +59,7 @@ namespace QLDA.Controllers
       
         public ActionResult Create(teacher std)
         {
-            if (ModelState.IsValid)
-            {
+           
                 string fileName = Path.GetFileNameWithoutExtension(std.ImageFile.FileName);
                 string extension = Path.GetExtension(std.ImageFile.FileName);
                 fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
@@ -69,7 +68,7 @@ namespace QLDA.Controllers
                 std.ImageFile.SaveAs(fileName);
                 db.teachers.Add(std);
                 db.SaveChanges();
-            }
+            
             ModelState.Clear();
             return RedirectToAction("Index");
         }
@@ -81,12 +80,30 @@ namespace QLDA.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(teacher std)
+        public ActionResult Edit(teacher tch)
         {
-
-          new TeacherBusinesslayer().Update(std);
-            return RedirectToAction("Index");
+            string fileName = Path.GetFileNameWithoutExtension(tch.ImageFile.FileName);
+            string extension = Path.GetExtension(tch.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            tch.image = "~/Image/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+            tch.ImageFile.SaveAs(fileName);
+            ModelState.Clear();
+            if (new TeacherBusinesslayer().Update(tch))
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(tch);
+            }
         }
-
+        public JsonResult Details(string id)
+        {
+            var teacher = db.teachers.Where(x => x.teacher_id  == id).FirstOrDefault();
+            var imageUrl = Url.Content(teacher.image);
+            teacher.image = imageUrl;
+            return Json(teacher, JsonRequestBehavior.AllowGet);
+        }
     }
 }

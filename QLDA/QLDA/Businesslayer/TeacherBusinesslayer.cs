@@ -36,21 +36,21 @@ namespace QLDA.Businesslayer
             }
             return true;
         }
-        public bool Update(teacher std)
+        public bool Update(teacher tch)
         {
             try
             {
-                teacher refteacher = (teacher)db.teachers.Where(x => x.teacher_id == std.teacher_id);
-                refteacher.gender = std.gender;
-                refteacher.phone = std.phone;
-                refteacher.image = std.image;
-                refteacher.name = std.name;
-                refteacher.address = std.address;
-                refteacher.age = std.age;
-                refteacher.faculty = std.faculty;
-                refteacher.subject = std.subject;
-                refteacher.education = std.education;
-                refteacher.projects = std.projects;
+                teacher refteacher = db.teachers.Where(x => x.teacher_id == tch.teacher_id).FirstOrDefault();
+                refteacher.gender = tch.gender;
+                refteacher.phone = tch.phone;
+                refteacher.image = tch.image;
+                refteacher.name = tch.name;
+                refteacher.address = tch.address;
+                refteacher.age = tch.age;
+                refteacher.faculty = tch.faculty;
+                refteacher.subject = tch.subject;
+                refteacher.education = tch.education;
+                refteacher.projects = tch.projects;
                 db.SaveChanges();
                 return true;
             }

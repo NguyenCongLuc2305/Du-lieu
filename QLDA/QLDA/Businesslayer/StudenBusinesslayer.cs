@@ -42,7 +42,7 @@ namespace QLDA.Businesslayer
             try
             {
 
-                student refstudent = (student)db.students.Where(x => x.student_id == std.student_id);
+                student refstudent = db.students.Where(x => x.student_id == std.student_id).FirstOrDefault();
                 refstudent.name = std.name;
                 refstudent.address = std.address;
                 refstudent.age = std.age;
@@ -52,6 +52,7 @@ namespace QLDA.Businesslayer
                 refstudent.image = std.image;
                 refstudent.phone = std.phone;
                 refstudent._class = std._class;
+                refstudent.projects = std.projects;
                 db.SaveChanges();
                 return true;
             }

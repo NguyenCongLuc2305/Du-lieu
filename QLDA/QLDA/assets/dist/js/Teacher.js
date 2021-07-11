@@ -1,6 +1,4 @@
-﻿
-
-function getbyID(tcid) {
+﻿function getbyIDtch(tcid) {
 
     $.ajax({
         type: "GET",
@@ -9,9 +7,7 @@ function getbyID(tcid) {
         dataType: "json",
         success: function (result) {
             if (result.teacher_id != null) {
-
                 var myDate = new Date(973875600000);
-
                 $("#teacherid").html(result.teacher_id);
                 $("#name").html(result.name);
                 $("#address").html(result.address);

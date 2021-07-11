@@ -27,14 +27,45 @@
     }
 
     li:last-child {
-        margin-left: 200px;
         position: relative;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /*background-color: #333;*/
+    }
+
+    li {
+        float: left;
+       
+    }
+
+        li:last-child {
+            border-right: none;
+      
+        }
+
+        li a {
+            display: block;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+            li a:hover:not(.active) {
+                background-color: #337AB7;
+            }
+
+    .active {
+        background-color: #337AB7;
     }
 </style>
 <div class="col-12">
     <div class="card">
         <div class="card-body">
-
             <div class="table-responsive">
                 <table class="table">
                     @using (Html.BeginForm("Index", "Teacher", FormMethod.Get))
@@ -54,7 +85,7 @@
                     <a href="/Teacher/Create" type="button" class="btn btn-primary" style="margin-left:50px; padding:3.5px 0px 3.5px 0px;"> <i class="fas fa-user-plus"></i>Thêm mới giáo viên</a>
                     <br />
                     <br />
-                    <caption>List of teachers</caption>
+                    <caption>Danh sách giáo viên</caption>
                     <thead>
                         <tr>
                             <th scope="col">Mã giáo viên</th>
@@ -65,15 +96,12 @@
                             <th scope="col">Khoa</th>
                             <th scope="col">Trình độ</th>
                             <th>Action</th>
-
                         </tr>
                     </thead>
                     @foreach (var item in Model)
                     {
                         <tbody>
                             <tr id="row_@item.teacher_id">
-
-
                                 <td>@item.teacher_id</td>
                                 <td>@item.name</td>
                                 <td>@item.age.ToString("dd/MM/yyyy")</td>
@@ -81,38 +109,26 @@
                                 <td>@item.gender</td>
                                 <td>@item.faculty</td>
                                 <td>@item.education</td>
-                                
                                 <td>
-                                    <script>
-                                        var tcid = "@item.teacher_id";
-                                        document.write("<button title='Xóa' class='btn btn-danger' onclick='ConfirmDelete(tcid);'><i class='fas fa-trash'></i></button>")
-                                    </script> |
-                                    <a href="/Teacher/Edit/@item.teacher_id" type="button" title="Sửa" class="btn btn-primary" style=" max-height: 31px; max-width: 35px;"><i class="fas fa-pen"></i></a> |
-                                    <script>
-                                        var tcid = "@item.teacher_id";
-                                        document.write("<button type='button' title='Chi tiết' data-toggle='modal' onclick='getbyID(tcid);'class='btn btn-primary'><i class='fa fa-info-circle'></i></button>")
-                                    </script>
+                                    <button title='Xóa' class='btn btn-danger' onclick='ConfirmDelete("@item.teacher_id");'><i class='fas fa-trash'></i></button>
+                                    <a href="/Teacher/Edit/@item.teacher_id" type="button" title="Sửa" class="btn btn-primary" style=" max-height: 31px; max-width: 35px;"><i class="fas fa-pen"></i></a>
+                                    <button type='button' title='Chi tiết' data-toggle='modal' onclick='getbyIDtch("@item.teacher_id");' class='btn btn-primary'><i class='fa fa-info-circle'></i></button>
                                 </td>
                             </tr>
                         </tbody>
                     }
                 </table>
-
                 <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-
                                 <h4 class="modal-title" id="myModalLabel">Chi tiết sinh viên</h4>
                             </div>
                             <div class="modal-body">
-
-
                                 <ul>
                                     <li for="teacher_id">Mã giáo viên:</li>
-                                    <li id="teacher_id"></li>
+                                    <li id="teacherid"></li>
                                 </ul>
-
                                 <ul>
                                     <li for="name">Họ tên:</li>
                                     <li id="name"></li>
@@ -127,29 +143,25 @@
                                 </ul>
 
                                 <ul>
-                                    <li for="phone">số điện thoại</li>
+                                    <li for="phone">số điện thoại:</li>
                                     <li id="phone"></li>
                                 </ul>
-
-
                                 <ul>
                                     <li for="gender">Giới tính:</li>
                                     <li id="gender"></li>
                                 </ul>
-
                                 <ul>
                                     <li for="faculty">Khoa:</li>
                                     <li id="faculty"></li>
                                 </ul>
                                 <ul>
-                                    <li for="age">Dạy môn:</li>
+                                    <li for="age">Bộ môn:</li>
                                     <li id="subject"></li>
                                 </ul>
                                 <ul>
                                     <li for="age">Trình độ:</li>
                                     <li id="education"></li>
                                 </ul>
-
                             </div>
                             <div class="modal-footer">
                                 <a href="#" type="button" class="btn btn-default" data-dismiss="modal">Đóng</a>
@@ -157,54 +169,37 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="modal fade" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
-
                             <div class="modal-header">
                                 <a href="#" class="close" data-dismiss="modal">&times;</a>
                                 <h3 class="modal-title">Xóa sinh viên</h3>
                             </div>
                             <div class="modal-body">
                                 <h4>Bạn có chắc muốn xóa? </h4>
-
                                 <div style="text-align:center;display:none" id="loaderDiv">
                                     <img src="~/assets/assets/images/200.gif" style="height:200px;width:200px" />
                                 </div>
-
                             </div>
                             <div class="modal-footer">
                                 <a href="#" class="btn btn-default" data-dismiss="modal">Không</a>
                                 <a href="#" class="btn btn-success" onclick="DeleteTeacher()">Có</a>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
                 <input type="hidden" id="hiddenTeacherId" />
-
             </div>
-
+            
             <script>
-
-
-
                 var ConfirmDelete = function (TeacherId) {
                     $("#hiddenTeacherId").val(TeacherId);
                     $("#myModal").modal('show');
                 }
-
                 var DeleteTeacher = function () {
-
                     $("#loaderDiv").show();
-
                     var stdId = $("#hiddenTeacherId").val();
-
                     $.ajax({
 
                         type: "POST",
@@ -214,11 +209,8 @@
                             $("#loaderDiv").hide();
                             $("#myModal").modal("hide");
                             $("#row_" + stdId).remove();
-
                         }
-
                     })
-
                 }
             </script>
         </div>

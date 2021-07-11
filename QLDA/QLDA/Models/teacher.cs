@@ -1,5 +1,6 @@
-namespace QLDA.Models
+﻿namespace QLDA.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace QLDA.Models
         {
             projects = new HashSet<project>();
         }
-
+       
         [Key]
         [StringLength(50)]
         public string teacher_id { get; set; }
@@ -30,6 +31,7 @@ namespace QLDA.Models
         public string image { get; set; }
 
         [NotMapped]
+     
         public HttpPostedFileBase ImageFile { get; set; }
 
         [StringLength(50)]

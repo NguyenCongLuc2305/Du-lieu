@@ -65,17 +65,15 @@
         <table style="border-inline:1px;">
             <tr>
                 <td>
-
                     <label>Mã giáo viên:</label>
                     <br>
-                    <input type="text" id="teacher_id" name="teacher_id">
+                    <input type="text" id="teacher_id" name="teacher_id" required/>
                     <br>
-
                 </td>
                 <td>
                     <label>Tên:</label>
                     <br>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="name" name="name" required/>
                     <br>
                 </td>
             </tr>
@@ -83,28 +81,26 @@
                 <td>
                     <label>Ngày sinh:</label>
                     <br>
-                    <input type="text" id="age" name="age">
+                    <input type="date" id="age" name="age" required/>
                 </td>
                 <td>
                     <label>Địa chỉ:</label><br>
-                    <input type="text" id="address" name="address">
+                    <input type="text" id="address" name="address" required/>
                 </td>
-               
             </tr>
             <tr>
-
                 <td>
                     <label>Trình độ</label><br />
-                    <input type="text" id="education" name="education" />
+                    <input type="text" id="education" name="education" required/>
                 </td>
                 <td>
                     <br>
                     <label>Giới tính:</label>
                     <br>
                     <label class="light">Nam:</label>
-                    <input type="radio" id="gender" value="Nam" name="gender"><br />
+                    <input type="radio" id="gender" value="Nam" name="gender" required/><br />
                     <label class="light">Nữ:</label>
-                    <input type="radio" id="gender" value="Nữ" name="gender">
+                    <input type="radio" id="gender" value="Nữ" name="gender" required/>
 
                 </td>
 
@@ -112,8 +108,12 @@
             </tr>
             <tr>
                 <td>
-                    <label>Dạy môn</label><br />
-                    <input type="text" id="subject" name="subject" />
+                    <label>Bộ môn</label><br />
+                    <select name="faculty" id="faculty" onchange="getFaculty();">
+                        <option required value="">Chọn Bộ môn</option>
+                        <option value="CNPM" >Công nghệ phần mềm</option>
+                        <option value="MVATTT" >Mạng và an toàn TT</option>
+                    </select>
                 </td>
                 <td>
                     <label>Khoa:</label>
@@ -127,7 +127,7 @@
                     </select>
                     <br>
                 </td>
-
+                
             </tr>
             <tr>
                 <td>
@@ -139,9 +139,9 @@
                 </td>
                 <td>
                     <label>Số điện thoại</label>
-                    <input type="text" id="phone" name="phone"/>
+                    <input type="text" id="phone" name="phone" />
                 </td>
-               
+
             </tr>
         </table>
     </fieldset>

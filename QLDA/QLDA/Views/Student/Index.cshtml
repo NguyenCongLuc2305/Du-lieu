@@ -12,12 +12,11 @@
         max-width: 35px;
     }
 
-
     .fas fa-trash {
         color: red;
     }
 
-   
+
     li {
         display: inline;
     }
@@ -27,8 +26,40 @@
     }
 
     li:last-child {
-        margin-left: 200px;
-        position:relative;
+        
+        position: relative;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /*background-color: #333;*/
+    }
+
+    li {
+        float: left;
+      
+    }
+
+        li:last-child {
+            border-right: none;
+          
+        }
+
+        li a {
+            display: block;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+            li a:hover:not(.active) {
+                background-color: #337AB7;
+            }
+
+    .active {
+        background-color: #337AB7;
     }
 </style>
 <div class="col-12">
@@ -52,9 +83,9 @@
                         </div>
                     }
                     <a href="/Student/Create" type="button" class="btn btn-primary" style="margin-left:50px; padding:3.5px 0px 3.5px 0px;"> <i class="fas fa-user-plus"></i>Thêm mới sinh viên</a>
-                    <br />
-                    <br />
-                    <caption>List of students</caption>
+                    <br/>
+                    <br/>
+                    <caption>Danh sách sinh viên</caption>
                     <thead>
                         <tr>
                             <th scope="col">Mã sinh viên</th>
@@ -65,38 +96,30 @@
                             <th scope="col">Lớp</th>
                             <th scope="col">Ảnh</th>
                             <th>Action</th>
-
                         </tr>
                     </thead>
                     @foreach (var item in Model)
                     {
-                        <tbody>
-                            <tr id="row_@item.student_id">
+                        <tr id="row_@item.student_id">
+                            <td>@item.student_id</td>
+                            <td>@item.name</td>
+                            <td>@item.age.ToString("dd/MM/yyyy")</td>
+                            <td>@item.phone</td>
+                            <td>@item.faculty</td>
+                            <td>@item._class</td>
+                            <td>
+                                <img src="@Url.Content(item.image)" width="40" height="25" />
+                            </td>
+                            <td>
 
+                                <button title='Xóa' class='btn btn-danger' onclick='ConfirmDelete("@item.student_id");'><i class='fas fa-trash'></i></button>
+                                
+                                <a href="/Student/Edit/@item.student_id" type="button" title="Sửa" class="btn btn-primary" style=" max-height: 31px; max-width: 35px;"><i class="fas fa-pen"></i></a> 
 
-                                <td>@item.student_id</td>
-                                <td>@item.name</td>
-                                <td>@item.age.ToString("dd/MM/yyyy")</td>
-                                <td>@item.phone</td>
-                                <td>@item.faculty</td>
-                                <td>@item._class</td>
+                                <button type='button' title='Chi tiết' data-toggle='modal' onclick='getbyID("@item.student_id");' class='btn btn-primary'><i class='fa fa-info-circle'></i></button>
 
-                                <td>
-            <img src="@Url.Content(item.image)" width="40" height="25" />
-        </td>
-                                <td>
-                                    <script>
-                                        var stdid = "@item.student_id";
-                                        document.write("<button title='Xóa' class='btn btn-danger' onclick='ConfirmDelete(stdid);'><i class='fas fa-trash'></i></button>")
-                                    </script> |
-                                    <a href="/Student/Edit/@item.student_id" type="button" title="Sửa" class="btn btn-primary" style=" max-height: 31px; max-width: 35px;"><i class="fas fa-pen"></i></a> |
-                                    <script>
-                                        var stdid = "@item.student_id";
-                                        document.write("<button type='button' title='Chi tiết' data-toggle='modal' onclick='getbyID(stdid);'class='btn btn-primary'><i class='fa fa-info-circle'></i></button>")
-                                    </script>
-                                </td>
-                            </tr>
-                        </tbody>
+                            </td>
+                        </tr>
                     }
                 </table>
 
@@ -139,7 +162,7 @@
                                 </ul>
                                 <ul>
                                     <li for="image">Ảnh:</li>
-                                    <li >
+                                    <li>
                                         <img id="image">
                                     </li>
                                 </ul>
@@ -195,7 +218,7 @@
                 <input type="hidden" id="hiddenStudentId" />
 
             </div>
-
+           
             <script>
 
 

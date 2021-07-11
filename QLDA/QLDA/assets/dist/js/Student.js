@@ -1,8 +1,4 @@
 ﻿
-//Load Data function  
-
-//Detail student
-
 function getbyID(stdid) {
 
     $.ajax({
@@ -11,7 +7,7 @@ function getbyID(stdid) {
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
-            if (result.student_id != null) {
+            if (result.student_id != null){
        
                 var myDate = new Date(973875600000);   
 
@@ -42,7 +38,6 @@ function getbyID(stdid) {
     });
     return false;
 }
-//function for updating employee's record  
 function getFaculty() {
     var faculty = $('#faculty').val()
 

@@ -54,8 +54,9 @@
         padding: 10px;
         background: #2d2d2d;
     }
+
 </style>
-<form action="/Student/Edit" method="post">
+<form action="/Student/Edit" method="post" enctype="multipart/form-data">
 
 
     <fieldset>
@@ -74,7 +75,7 @@
                 <td>
                     <label>Tên:</label>
                     <br>
-                    <input type="text" value="@Model.name" id="name"  name="name">
+                    <input type="text" value="@Model.name" id="name" name="name">
                     <br>
                 </td>
             </tr>
@@ -82,16 +83,30 @@
                 <td>
                     <label>Ngày sinh:</label>
                     <br>
-                    <input type="date" value="@Model.age" id="age" name="age">
+                    <input type="date" value="@Model.age.ToString("yyyy-MM-dd")" id="age" name="age">
                 </td>
                 <td>
                     <br>
                     <label>Giới tính:</label>
                     <br>
-                    <label class="light">Nam:</label>
-                    <input type="radio" id="gender" value="@Model.gender" name="gender"><br />
-                    <label class="light">Nữ:</label>
-                    <input type="radio" id="gender" value="@Model.gender" name="gender">
+                    @{
+                        if (Model.gender == "Nam")
+                        {
+                            <label class="light">Nam:</label>
+                            <input type="radio" id="gender" checked value="Nam" name="gender"><br/>
+                            <label class="light">Nữ:</label>
+                            <input type="radio" id="gender" value="Nữ" name="gender">
+                        }
+                        else if (Model.gender == "Nữ")
+                        {
+                            <label class="light">Nam:</label>
+                            <input type="radio" id="gender"  value="Nam" name="gender"><br/>
+                            <label class="light">Nữ:</label>
+                            <input type="radio" id="gender" checked value="Nữ" name="gender">
+                        }
+
+                    }
+
 
 
                 </td>
@@ -110,14 +125,15 @@
 
             </tr>
             <tr>
-               
+
                 <td>
                     <label>Khoa:</label>
                     <br>@{
                         if (@Model.faculty == "CNTT")
                         {
                             <select name="faculty" id="faculty" onchange="getFaculty();">
-                                <option value="CNTT">Công nghệ thông tin</option>
+                                <option required value="">Chọn khoa</option>
+                                <option value="CNTT" selected>Công nghệ thông tin</option>
                                 <option value="TDH">Tự động hóa</option>
                                 <option value="TTDPT">TT đa phương tiện</option>
                                 <option value="QTVP">Quản trị văn phòng</option>
@@ -126,7 +142,8 @@
                         if (@Model.faculty == "TDH")
                         {
                             <select name="faculty" id="faculty" onchange="getFaculty();">
-                                <option value="TDH">Tự động hóa</option>
+                                <option required value="">Chọn khoa</option>
+                                <option value="TDH" selected>Tự động hóa</option>
                                 <option value="CNTT">Công nghệ thông tin</option>
                                 <option value="TTDPT">TT đa phương tiện</option>
                                 <option value="QTVP">Quản trị văn phòng</option>
@@ -135,7 +152,8 @@
                         if (@Model.faculty == "TTDPT")
                         {
                             <select name="faculty" id="faculty" onchange="getFaculty();">
-                                 <option value="TTDPT">TT đa phương tiện</option>
+                                <option required value="">Chọn khoa</option>
+                                <option value="TTDPT" selected>TT đa phương tiện</option>
                                 <option value="TDH">Tự động hóa</option>
                                 <option value="CNTT">Công nghệ thông tin</option>
                                 <option value="QTVP">Quản trị văn phòng</option>
@@ -144,7 +162,8 @@
                         if (@Model.faculty == "QTVP")
                         {
                             <select name="faculty" id="faculty" onchange="getFaculty();">
-                                <option value="QTVP">Quản trị văn phòng</option>
+                                <option required value="">Chọn khoa</option>
+                                <option value="QTVP" selected>Quản trị văn phòng</option>
                                 <option value="TDH">Tự động hóa</option>
                                 <option value="CNTT">Công nghệ thông tin</option>
                                 <option value="TTDPT">TT đa phương tiện</option>
@@ -167,8 +186,8 @@
                 <td>
                     <label>Ảnh:</label>
                     <br>
-                    <input required type='file' onchange="readURL(this);" />
-                    <a href="https://via.placeholder.com/150"><img src="@Model.image"  id="blah" alt="your image" /></a>
+                    <input required type='file' onchange="readURL(this);" name="ImageFile" id="ImageFile" />
+                    <img id="blah" src="@Model.image" style="width:150px;height:150px" alt="your image" />
                     <br>
                 </td>
                 <td>

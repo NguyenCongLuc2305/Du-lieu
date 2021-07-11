@@ -17,10 +17,10 @@ namespace QLDA.Models
         public string name { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? start { get; set; }
+        public DateTime start { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? end { get; set; }
+        public DateTime end { get; set; }
 
         [StringLength(50)]
         public string teacher_id { get; set; }

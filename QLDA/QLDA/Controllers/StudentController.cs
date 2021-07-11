@@ -18,7 +18,7 @@ namespace QLDA.Controllers
         {
             int PageSize;
             int pageNumber;
-            List<student> model= null;
+            List<student> model = null;
             if (SearchString != null)
             {
                 page = 1;
@@ -37,7 +37,7 @@ namespace QLDA.Controllers
             PageSize = 5;
             pageNumber = (page ?? 1);
             model = db.students.ToList();
-            
+
             return View(model.ToPagedList(pageNumber, PageSize));
         }
         public JsonResult listName(string q)
@@ -68,53 +68,50 @@ namespace QLDA.Controllers
         [HttpPost]
         public ActionResult Create(student std)
         {
-            if (ModelState.IsValid)
-           {
-                string fileName = Path.GetFileNameWithoutExtension(std.ImageFile.FileName);
-                string extension = Path.GetExtension(std.ImageFile.FileName);
-                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                std.image = "~/Image/" + fileName;
-                fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-                std.ImageFile.SaveAs(fileName);
-                db.students.Add(std);
-                db.SaveChanges();
-            }
-            ModelState.Clear();
-            return RedirectToAction("Index");
-       }
-
-        public ActionResult Edit(string id)
-        {
-            var student = db.students.Where(x => x.student_id == id).FirstOrDefault();
-            return View(student);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(student std)
-        {
-
             string fileName = Path.GetFileNameWithoutExtension(std.ImageFile.FileName);
             string extension = Path.GetExtension(std.ImageFile.FileName);
             fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
             std.image = "~/Image/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
             std.ImageFile.SaveAs(fileName);
-            var student = new StudentBusinesslayer().Update(std);
+            db.students.Add(std);
+            db.SaveChanges();
+            ModelState.Clear();
             return RedirectToAction("Index");
         }
 
-  
-     
+        public ActionResult Edit(string id)
+        {
+            var student = db.students.Where(x => x.student_id == id).FirstOrDefault();
+            return View(student);
+        }
+        [HttpPost]
+        public ActionResult Edit(student std)
+        {
+            string fileName = Path.GetFileNameWithoutExtension(std.ImageFile.FileName);
+            string extension = Path.GetExtension(std.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            std.image = "~/Image/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+            std.ImageFile.SaveAs(fileName);
+            ModelState.Clear();
+            if (new StudentBusinesslayer().Update(std))
+            {
+                return RedirectToAction("Index");
+            }else
+            {
+                return View(std);
+            }
+
+
+
+        }
         public JsonResult Details(string id)
         {
-
-                var student = db.students.Where(x => x.student_id == id).FirstOrDefault();
+            var student = db.students.Where(x => x.student_id == id).FirstOrDefault();
             var imageUrl = Url.Content(student.image);
             student.image = imageUrl;
-            return Json(student,JsonRequestBehavior.AllowGet);
+            return Json(student, JsonRequestBehavior.AllowGet);
         }
-
-
-
     }
 }
