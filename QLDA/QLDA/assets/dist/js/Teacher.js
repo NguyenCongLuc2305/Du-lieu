@@ -50,5 +50,41 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+var common = {
+    init: function () {
+        common.registerEvent();
+    },
+    registerEvent: function () {
+        $("#teacher").autocomplete({
+            minLength: 0,
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Teacher/listName",
+                    dataType: "json",
+                    data: {
+                        q: request.term
+                    },
+                    success: function (res) {
+                        response(res.data);
+                    }
+                });
+            },
+            focus: function (event, ui) {
+                $("#teacher").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#teacher").val(ui.item.label);
 
+                return false;
+            }
+        })
+            .autocomplete("instance")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append("<div>" + item.label + "</div>")
+                    .appendTo(ul);
+            };
+    }
+}
+common.init();
 

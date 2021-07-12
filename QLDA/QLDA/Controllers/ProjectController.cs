@@ -39,8 +39,6 @@ namespace QLDA.Controllers
 
             return View(model.ToPagedList(pageNumber, PageSize));
         }
-
-
         public ActionResult Create()
         {
             return View();
@@ -53,6 +51,7 @@ namespace QLDA.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+    
         public JsonResult listNameTeacher(string q)
         {
             var data = new ProjectBusinesslayer().listNameTeacher(q);
@@ -71,5 +70,76 @@ namespace QLDA.Controllers
                 status = true
             }, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult listName(string q)
+        {
+            var data = new ProjectBusinesslayer().listName(q);
+            return Json(new
+            {
+                data = data,
+                status = true
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Details(string id)
+        {
+            var project = db.projects.Where(x => x.project_id == id).FirstOrDefault();
+            return Json(project, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetStudentNamebyId(string id)
+        {
+            string StudentName;
+            student student = db.students.Where(x => x.student_id == id).FirstOrDefault();
+            if (student == null)
+            {
+                StudentName = "null";
+            }
+            else
+            {
+            StudentName = student.name;
+            }
+            return Json(StudentName, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetTeacherNamebyId(string id)
+        {
+            string TeacherName;
+            teacher teacher = db.teachers.Where(x => x.teacher_id == id).FirstOrDefault();
+            if (teacher == null)
+            {
+                TeacherName = "null";
+            }
+            else
+            {
+                TeacherName = teacher.name;
+            }
+            return Json(TeacherName, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Edit(string id)
+        {
+            var project = db.projects.Where(x => x.project_id == id).FirstOrDefault();
+            return View(project);
+        }
+        [HttpPost]
+        public ActionResult Edit(project pro)
+        {
+            var isTrue = new ProjectBusinesslayer().Update(pro);
+            if(isTrue)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(pro);
+            }
+        }
+        public JsonResult Delete(string ProjectId)
+        {
+            bool isDeleted = false;
+            isDeleted = new StudentBusinesslayer().Delete(ProjectId);
+            if (isDeleted)
+            {
+                return Json(isDeleted, JsonRequestBehavior.AllowGet);
+            }
+            return Json(isDeleted, JsonRequestBehavior.AllowGet);
+        }
+  
     }
 }

@@ -105,5 +105,15 @@ namespace QLDA.Controllers
             teacher.image = imageUrl;
             return Json(teacher, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult Delete(string TeacherId)
+        {
+            bool isDeleted = false;
+            isDeleted = new StudentBusinesslayer().Delete(TeacherId);
+            if (isDeleted)
+            {
+                return Json(isDeleted, JsonRequestBehavior.AllowGet);
+            }
+            return Json(isDeleted, JsonRequestBehavior.AllowGet);
+        }
     }
 }

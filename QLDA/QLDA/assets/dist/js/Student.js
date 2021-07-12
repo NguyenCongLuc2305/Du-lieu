@@ -39,7 +39,7 @@ function getbyID(stdid) {
     return false;
 }
 function getFaculty() {
-    var faculty = $('#faculty').val()
+    var faculty = $('#faculty').val();
 
     if (faculty == "") {
         var html = '';

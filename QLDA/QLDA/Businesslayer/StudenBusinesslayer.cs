@@ -23,12 +23,12 @@ namespace QLDA.Businesslayer
             var model = db.students.Where(x => x.name.Contains(keyword)).OrderByDescending(x => x.name).ToList();
             return model;
         }
-        public bool Delete(string studentId)
+        public bool Delete(string ProjectId)
         {
             try
             {
-                student std = db.students.SingleOrDefault(x => x.student_id == studentId);
-                db.students.Remove(std);
+               project pro= db.projects.SingleOrDefault(x => x.project_id == ProjectId);
+                db.projects.Remove(pro);
                 db.SaveChanges();
             }
             catch(Exception ex)

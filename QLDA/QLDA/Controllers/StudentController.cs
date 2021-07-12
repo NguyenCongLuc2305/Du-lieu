@@ -49,7 +49,7 @@ namespace QLDA.Controllers
                 status = true
             }, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+    
         public JsonResult Delete(string studentId)
         {
             bool isDeleted = false;
@@ -103,15 +103,15 @@ namespace QLDA.Controllers
                 return View(std);
             }
 
-
-
         }
-        public JsonResult Details(string id)
+        public ActionResult Details(string id)
         {
             var student = db.students.Where(x => x.student_id == id).FirstOrDefault();
             var imageUrl = Url.Content(student.image);
             student.image = imageUrl;
+            
             return Json(student, JsonRequestBehavior.AllowGet);
         }
+     
     }
 }

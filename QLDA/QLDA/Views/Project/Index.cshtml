@@ -15,19 +15,11 @@
     .fas fa-trash {
         color: red;
     }
-
-
-    li {
-        display: inline;
-    }
-
     ul {
         padding: 10px;
     }
 
-    li:last-child {
-        position: relative;
-    }
+
 
     ul {
         list-style-type: none;
@@ -36,21 +28,15 @@
         overflow: hidden; /*background-color: #333;*/
     }
 
-    li {
-        float: left;
+
+
+
+    li a {
+        color: Black;
+        text-align: center;
+        padding: 8px 8px;
+        text-decoration: none;
     }
-
-        li:last-child {
-            border-right: none;
-        }
-
-        li a {
-            display: block;
-            color: White;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
 
             li a:hover:not(.active) {
                 background-color: #337AB7;
@@ -70,7 +56,7 @@
                     {
                         <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" class="form-control bg-light small" id="txtkeyword" name="SearchString" placeholder="Tìm kiếm..."
+                                <input type="text" class="form-control bg-light small" id="project" name="SearchString" placeholder="Tìm kiếm..."
                                        aria-label="SearchString" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
@@ -80,10 +66,10 @@
                             </div>
                         </div>
                     }
-                    <a href="~/Project/Create" type="button" class="btn btn-primary" style="margin-left:50px; padding:3.5px 0px 3.5px 0px;"> <i class="fas fa-user-plus"></i>Thêm mới sinh viên</a>
-                    <br />
-                    <br />
-                    <caption>Danh sách sinh viên</caption>
+                    <a href="~/Project/Create" type="button" class="btn btn-primary" style="margin-left:50px; padding:3.5px 0px 3.5px 0px;"> <i class="fas fa-user-plus"></i>Thêm mới đồ án</a>
+                    <br>
+                    <br>
+                    <caption>Danh sách đồ án</caption>
                     <thead>
                         <tr>
                             <th scope="col">Mã đồ án</th>
@@ -97,23 +83,23 @@
                     </thead>
                     @foreach (var item in Model)
                     {
-                <tr id="row_@item.project_id">
-                    <td>@item.project_id</td>
-                    <td>@item.name</td>
-                    <td>@item.student.name</td>
-                    <td>@item.teacher.name</td>
-                    <td>@item.start.ToString("dd/MM/yyyy")</td>
-                    <td>@item.end.ToString("dd/MM/yyyy")</td>
-                    <td>
+                        <tr id="row_@item.project_id">
+                            <td>@item.project_id</td>
+                            <td>@item.name</td>
+                            <td>@item.student.name</td>
+                            <td>@item.teacher.name</td>
+                            <td>@item.start.ToString("dd/MM/yyyy")</td>
+                            <td>@item.end.ToString("dd/MM/yyyy")</td>
+                            <td>
 
-                        <button title='Xóa' class='btn btn-danger' onclick='ConfirmDelete("@item.student_id");'><i class='fas fa-trash'></i></button>
+                                <button title='Xóa' class='btn btn-danger' onclick='ConfirmDelete("@item.project_id");'><i class='fas fa-trash'></i></button>
 
-                        <a href="/Student/Edit/@item.student_id" type="button" title="Sửa" class="btn btn-primary" style=" max-height: 31px; max-width: 35px;"><i class="fas fa-pen"></i></a>
+                                <button href="/Project/Edit/@item.project_id" type="button" title="Sửa" class="btn btn-primary" style=" max-height: 31px; max-width: 35px;"><i class="fas fa-pen"></i></button>
 
-                        <button type='button' title='Chi tiết' data-toggle='modal' onclick='getbyID("@item.student_id");' class='btn btn-primary'><i class='fa fa-info-circle'></i></button>
+                                <button type='button' title='Chi tiết' data-toggle='modal' onclick='getProjectbyID("@item.project_id");' class='btn btn-primary'><i class='fa fa-info-circle'></i></button>
 
-                    </td>
-                </tr>
+                            </td>
+                        </tr>
                     }
                 </table>
 
@@ -125,8 +111,6 @@
                                 <h4 class="modal-title" id="myModalLabel">Chi tiết sinh viên</h4>
                             </div>
                             <div class="modal-body">
-
-
                                 <ul>
                                     <li for="project_id">Mã đồ án:</li>
                                     <li id="project_id"></li>
@@ -138,51 +122,30 @@
                                 </ul>
 
                                 <ul>
-                                    <li for="age">Ngày băt đầu:</li>
-                                    <li id="age"></li>
+                                    <li >Ngày băt đầu:</li>
+                                    <li id="start"></li>
                                 </ul>
 
                                 <ul>
-                                    <li for="age">Ngày băt đầu:</li>
-                                    <li id="age"></li>
-                                </ul>
-
-                                <ul>
-                                    <li for="age">Ngày băt đầu:</li>
-                                    <li id="age"></li>
+                                    <li >Ngày băt đầu:</li>
+                                    <li id="end"></li>
                                 </ul>
                                 <ul>
-                                    <li for="gender">Ngày kết thúc:</li>
-                                    <li id="gender"></li>
-                                </ul>
-
-                                <ul>
-                                    <li for="address">Địa chỉ:</li>
-                                    <li id="address"></li>
+                                    <li >Mã giáo viên:</li>
+                                    <li id="teacher_id"></li>
                                 </ul>
                                 <ul>
-                                    <li for="faculty">Khoa:</li>
-                                    <li id="faculty"></li>
+                                    <li >Mã sinh viên:</li>
+                                    <li id="student_id"></li>
                                 </ul>
                                 <ul>
-                                    <li for="image">Ảnh:</li>
-                                    <li>
-                                        <img id="image">
-                                    </li>
+                                    <li >Giáo viên hướng dẫn:</li>
+                                    <li id="teacher_name"></li>
                                 </ul>
                                 <ul>
-                                    <li for="_class">Lớp:</li>
-                                    <li id="_class"></li>
+                                    <li for="image">Sinh viên thực hiện:</li>
+                                    <li id="student_name"></li>
                                 </ul>
-                                <ul>
-                                    <li for="email">Email:</li>
-                                    <li id="email"></li>
-                                </ul>
-                                <ul>
-                                    <li for="phone">số điện thoại</li>
-                                    <li id="phone"></li>
-                                </ul>
-
                             </div>
                             <div class="modal-footer">
                                 <a href="#" type="button" class="btn btn-default" data-dismiss="modal">Đóng</a>
@@ -220,10 +183,8 @@
                 <input type="hidden" id="hiddenStudentId" />
 
             </div>
-
+        
             <script>
-
-
 
                 var ConfirmDelete = function (StudentId) {
                     $("#hiddenStudentId").val(StudentId);

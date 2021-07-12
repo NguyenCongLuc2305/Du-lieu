@@ -19,6 +19,7 @@
             },
             focus: function (event, ui) {
                 $("#teacher_id").val(ui.item.label);
+                GetTeacherNamebyId();
                 return false;
             },
             select: function (event, ui) {
@@ -35,6 +36,7 @@
     }
 }
 common.init();
+
 var common = {
     init: function () {
         common.registerEvent();
@@ -56,11 +58,11 @@ var common = {
             },
             focus: function (event, ui) {
                 $("#student_id").val(ui.item.label);
+                GetStudentNamebyId();
                 return false;
             },
             select: function (event, ui) {
                 $("#student_id").val(ui.item.label);
-
                 return false;
             }
         })
@@ -69,6 +71,7 @@ var common = {
                     .append("<div>" + item.label + "</div>")
                     .appendTo(ul);
             };
+
     }
 }
 common.init();

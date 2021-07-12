@@ -18,42 +18,27 @@
     }
 
 
-    li {
-        display: inline;
-    }
 
     ul {
         padding: 10px;
     }
 
-    li:last-child {
-        position: relative;
-    }
+
 
     ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
-        overflow: hidden; /*background-color: #333;*/
+        overflow: hidden; 
     }
 
-    li {
-        float: left;
-       
+
+    li a {
+        color: Black;
+        text-align: center;
+        padding: 8px 8px;
+        text-decoration: none;
     }
-
-        li:last-child {
-            border-right: none;
-      
-        }
-
-        li a {
-            display: block;
-            color: Black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
 
             li a:hover:not(.active) {
                 background-color: #337AB7;
@@ -72,7 +57,7 @@
                     {
                         <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" class="form-control bg-light small" id="txtkeyword" name="SearchString" placeholder="Tìm kiếm..."
+                                <input type="text" class="form-control bg-light small" id="teacher" name="SearchString" placeholder="Tìm kiếm..."
                                        aria-label="SearchString" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">

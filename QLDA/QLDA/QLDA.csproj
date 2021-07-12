@@ -339,10 +339,11 @@
     <Content Include="assets\assets\libs\popper.js\dist\umd\popper.min.js" />
     <Content Include="assets\dist\css\jquery-ui.css" />
     <Content Include="assets\dist\js\bootstrap.min.js" />
+    <Content Include="assets\dist\js\Create.js" />
     <Content Include="assets\dist\js\jquery-1.12.4.js" />
     <Content Include="assets\dist\js\jquery-3.6.0.min.js" />
     <Content Include="assets\dist\js\jquery-ui.js" />
-    <Content Include="assets\dist\js\pages\Project.js" />
+    <Content Include="assets\dist\js\Project.js" />
     <Content Include="assets\dist\js\Student.js" />
     <Content Include="assets\dist\js\Teacher.js" />
     <Content Include="assets\FontAwesome\css\all.css" />
@@ -2026,7 +2027,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="assets\dist\js\Base.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2327,6 +2327,7 @@
     <Content Include="Views\Teacher\Edit.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
