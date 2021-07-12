@@ -82,13 +82,8 @@ namespace QLDA.Controllers
         [HttpPost]
         public ActionResult Edit(teacher tch)
         {
-            string fileName = Path.GetFileNameWithoutExtension(tch.ImageFile.FileName);
-            string extension = Path.GetExtension(tch.ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            tch.image = "~/Image/" + fileName;
-            fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-            tch.ImageFile.SaveAs(fileName);
-            ModelState.Clear();
+         
+        
             if (new TeacherBusinesslayer().Update(tch))
             {
                 return RedirectToAction("Index");
@@ -107,13 +102,8 @@ namespace QLDA.Controllers
         }
         public JsonResult Delete(string TeacherId)
         {
-            bool isDeleted = false;
-            isDeleted = new StudentBusinesslayer().Delete(TeacherId);
-            if (isDeleted)
-            {
-                return Json(isDeleted, JsonRequestBehavior.AllowGet);
-            }
-            return Json(isDeleted, JsonRequestBehavior.AllowGet);
+          
+            return Json(new TeacherBusinesslayer().Delete(TeacherId), JsonRequestBehavior.AllowGet);
         }
     }
 }

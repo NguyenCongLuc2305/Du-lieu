@@ -8,6 +8,8 @@ using PagedList;
 using QLDA.Businesslayer;
 using System.Threading.Tasks;
 using System.IO;
+using System.Data.Entity;
+
 namespace QLDA.Controllers
 {
     public class StudentController : Controller
@@ -52,13 +54,7 @@ namespace QLDA.Controllers
     
         public JsonResult Delete(string studentId)
         {
-            bool isDeleted = false;
-            isDeleted = new StudentBusinesslayer().Delete(studentId);
-            if (isDeleted)
-            {
-                return Json(isDeleted, JsonRequestBehavior.AllowGet);
-            }
-            return Json(isDeleted, JsonRequestBehavior.AllowGet);
+            return Json(new StudentBusinesslayer().Delete(studentId), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Create()
@@ -88,13 +84,6 @@ namespace QLDA.Controllers
         [HttpPost]
         public ActionResult Edit(student std)
         {
-            string fileName = Path.GetFileNameWithoutExtension(std.ImageFile.FileName);
-            string extension = Path.GetExtension(std.ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            std.image = "~/Image/" + fileName;
-            fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-            std.ImageFile.SaveAs(fileName);
-            ModelState.Clear();
             if (new StudentBusinesslayer().Update(std))
             {
                 return RedirectToAction("Index");

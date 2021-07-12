@@ -116,15 +116,15 @@
                 <td>
                     <label>Bộ môn</label><br />
                     @{
-                        if (Model.faculty == "CNTT")
+                        if (Model.subject == "CNPM")
                         {
                             <select name="faculty" id="faculty" onchange="getFaculty();">
                                 <option required value="">Chọn Bộ môn</option>
-                                <option value="CNPM" selected></option>
-                                <option value="MVATTT"></option>
+                                <option value="CNPM" selected>Công nghệ phần mềm</option>
+                                <option value="MVATTT">Mạng và an toàn TT</option>
                             </select>
                         }
-                        if (Model.faculty == "TDH")
+                        if (Model.subject == "MVATTT")
                         {
                             <select name="faculty" id="faculty" onchange="getFaculty();">
                                 <option required value="">Chọn Bộ môn</option>
@@ -186,8 +186,7 @@
                 <td>
                     <label>Ảnh:</label>
                     <br>
-                    <input type='file' onchange="readURL(this);" name="ImageFile" id="ImageFile" />
-                    <img id="blah" src="@Model.image" style="width:150px;height:150px" alt="your image" />
+                    <img id="blah" src="@Url.Content(Model.image)" style="width:150px;height:150px" alt="your image" />
                     <br>
                 </td>
                 <td>

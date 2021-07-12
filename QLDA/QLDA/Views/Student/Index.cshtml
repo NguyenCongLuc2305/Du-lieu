@@ -75,7 +75,6 @@
                             <th scope="col">Điện thoại</th>
                             <th scope="col">Khoa</th>
                             <th scope="col">Lớp</th>
-                            <th scope="col">Ảnh</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -83,14 +82,15 @@
                     {
                         <tr id="row_@item.student_id">
                             <td>@item.student_id</td>
-                            <td>@item.name</td>
+                            <td>
+                                @item.name
+                                <a><img src="@Url.Content(item.image)" width="40" height="25" /></a>
+                            </td>
                             <td>@item.age.ToString("dd/MM/yyyy")</td>
                             <td>@item.phone</td>
                             <td>@item.faculty</td>
                             <td>@item._class</td>
-                            <td>
-                                <img src="@Url.Content(item.image)" width="40" height="25" />
-                            </td>
+                            
                             <td>
 
                                 <button title='Xóa' class='btn btn-danger' onclick='ConfirmDelete("@item.student_id");'><i class='fas fa-trash'></i></button>
@@ -114,51 +114,53 @@
                             <div class="modal-body">
 
 
-                                <ul>
-                                    <li for="student_id">Mã sinh viên:</li>
-                                    <li id="studentid"></li>
-                                </ul>
+                                <table>
+                                    <tr>
+                                        <th for="student_id">Mã sinh viên:</th>
+                                        <td id="studentid"></td>
+                                    </tr>
 
-                                <ul>
-                                    <li for="name">Họ tên:</li>
-                                    <li id="name"></li>
-                                </ul>
+                                    <tr>
+                                        <th for="name">Họ tên:</th>
+                                        <td id="name"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="image">Ảnh:</th>
+                                        <td>
+                                            <img id="image" style="width:300px;height:200px">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th for="age">Ngày sinh:</th>
+                                        <td id="age"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="gender">Giới tính:</th>
+                                        <td id="gender"></td>
+                                    </tr>
 
-                                <ul>
-                                    <li for="age">Ngày sinh:</li>
-                                    <li id="age"></li>
-                                </ul>
-                                <ul>
-                                    <li for="gender">Giới tính:</li>
-                                    <li id="gender"></li>
-                                </ul>
+                                    <tr>
+                                        <th for="address">Địa chỉ:</th>
+                                        <td id="address"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="faculty">Khoa:</th>
+                                        <td id="faculty"></td>
+                                    </tr>
 
-                                <ul>
-                                    <li for="address">Địa chỉ:</li>
-                                    <li id="address"></li>
-                                </ul>
-                                <ul>
-                                    <li for="faculty">Khoa:</li>
-                                    <li id="faculty"></li>
-                                </ul>
-                                <ul>
-                                    <li for="image">Ảnh:</li>
-                                    <li>
-                                        <img id="image">
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li for="_class">Lớp:</li>
-                                    <li id="_class"></li>
-                                </ul>
-                                <ul>
-                                    <li for="email">Email:</li>
-                                    <li id="email"></li>
-                                </ul>
-                                <ul>
-                                    <li for="phone">số điện thoại</li>
-                                    <li id="phone"></li>
-                                </ul>
+                                    <tr>
+                                        <th for="_class">Lớp:</th>
+                                        <td id="_class"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="email">Email:</th>
+                                        <td id="email"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="phone">số điện thoại:</th>
+                                        <td id="phone"></td>
+                                    </tr>
+                                </table>
 
                             </div>
                             <div class="modal-footer">
@@ -201,9 +203,6 @@
             </div>
            
             <script>
-
-
-
                 var ConfirmDelete = function (StudentId) {
                     $("#hiddenStudentId").val(StudentId);
                     $("#myModal").modal('show');

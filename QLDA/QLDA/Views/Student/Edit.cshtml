@@ -176,7 +176,7 @@
                     <label>Lớp:</label>
                     <br>
                     <select name="_class" id="_class">
-                        <option value="">@Model._class</option>s
+                        <option value="@Model._class">@Model._class</option>s
                     </select>
                     <br>
 
@@ -186,8 +186,7 @@
                 <td>
                     <label>Ảnh:</label>
                     <br>
-                    <input required type='file' onchange="readURL(this);" name="ImageFile" id="ImageFile" />
-                    <img id="blah" src="@Model.image" style="width:150px;height:150px" alt="your image" />
+                    <img id="blah" src="@Url.Content(Model.image)" style="width:150px;height:150px" alt="your image" />
                     <br>
                 </td>
                 <td>

@@ -29,7 +29,7 @@
         list-style-type: none;
         margin: 0;
         padding: 0;
-        overflow: hidden; 
+        overflow: hidden;
     }
 
 
@@ -40,9 +40,9 @@
         text-decoration: none;
     }
 
-            li a:hover:not(.active) {
-                background-color: #337AB7;
-            }
+        li a:hover:not(.active) {
+            background-color: #337AB7;
+        }
 
     .active {
         background-color: #337AB7;
@@ -88,7 +88,10 @@
                         <tbody>
                             <tr id="row_@item.teacher_id">
                                 <td>@item.teacher_id</td>
-                                <td>@item.name</td>
+                                <td>
+                                    @item.name
+                                        <a><img src="@Url.Content(item.image)" width="50" height="35" /></a>
+                                </td>
                                 <td>@item.age.ToString("dd/MM/yyyy")</td>
                                 <td>@item.phone</td>
                                 <td>@item.gender</td>
@@ -110,43 +113,51 @@
                                 <h4 class="modal-title" id="myModalLabel">Chi tiết sinh viên</h4>
                             </div>
                             <div class="modal-body">
-                                <ul>
-                                    <li for="teacher_id">Mã giáo viên:</li>
-                                    <li id="teacherid"></li>
-                                </ul>
-                                <ul>
-                                    <li for="name">Họ tên:</li>
-                                    <li id="name"></li>
-                                </ul>
-                                <ul>
-                                    <li for="age">Ngày sinh:</li>
-                                    <li id="age"></li>
-                                </ul>
-                                <ul>
-                                    <li for="address">Địa chỉ:</li>
-                                    <li id="address"></li>
-                                </ul>
+                                <table>
+                                    <tr>
+                                        <th for="teacher_id">Mã giáo viên:</th>
+                                        <td id="teacherid"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="name">Họ tên:</th>
+                                        <td id="name"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="image">Ảnh:</th>
+                                        <td>
+                                            <img id="image" style="width:300px;height:200px">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th for="age">Ngày sinh:</th>
+                                        <td id="age"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="address">Địa chỉ:</th>
+                                        <td id="address"></td>
+                                    </tr>
 
-                                <ul>
-                                    <li for="phone">số điện thoại:</li>
-                                    <li id="phone"></li>
-                                </ul>
-                                <ul>
-                                    <li for="gender">Giới tính:</li>
-                                    <li id="gender"></li>
-                                </ul>
-                                <ul>
-                                    <li for="faculty">Khoa:</li>
-                                    <li id="faculty"></li>
-                                </ul>
-                                <ul>
-                                    <li for="age">Bộ môn:</li>
-                                    <li id="subject"></li>
-                                </ul>
-                                <ul>
-                                    <li for="age">Trình độ:</li>
-                                    <li id="education"></li>
-                                </ul>
+                                    <tr>
+                                        <th for="phone">số điện thoại:</th>
+                                        <td id="phone"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="gender">Giới tính:</th>
+                                        <td id="gender"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="faculty">Khoa:</th>
+                                        <td id="faculty"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="age">Bộ môn:</th>
+                                        <td id="subject"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="age">Trình độ:</th>
+                                        <td id="education"></td>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="modal-footer">
                                 <a href="#" type="button" class="btn btn-default" data-dismiss="modal">Đóng</a>
@@ -176,7 +187,7 @@
                 </div>
                 <input type="hidden" id="hiddenTeacherId" />
             </div>
-            
+
             <script>
                 var ConfirmDelete = function (TeacherId) {
                     $("#hiddenTeacherId").val(TeacherId);

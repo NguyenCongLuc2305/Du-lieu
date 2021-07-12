@@ -43,7 +43,6 @@ namespace QLDA.Businesslayer
                 teacher refteacher = db.teachers.Where(x => x.teacher_id == tch.teacher_id).FirstOrDefault();
                 refteacher.gender = tch.gender;
                 refteacher.phone = tch.phone;
-                refteacher.image = tch.image;
                 refteacher.name = tch.name;
                 refteacher.address = tch.address;
                 refteacher.age = tch.age;
