@@ -73,10 +73,10 @@
                 </p>
 
                 <label>Mã giáo viên</label><br />
-                <p><input type="text" id="teacher_id" name="teacher_id" value="@Model.teacher_id" required /></p>
+                <p><input type="text" id="teacher_id" name="teacher_id" value="@Model.teacher_id"  /></p>
 
                 <label>Mã sinh viên:</label><br>
-                <p> <input type="text" id="student_id" name="student_id" value="@Model.student_id" required /></p>
+                <p> <input type="text" id="student_id" name="student_id" value="@Model.student_id"  /></p>
 
 
             </div>
@@ -85,7 +85,7 @@
 
                 <label>Giáo viên hướng dẫn</label>
                 <p>
-                    <input id="teacherName" value="@Model.teacher.name" >
+                    <input readonly id="teacherName" value="@Model.teacher.name" >
                 </p>
                 <label>Sinh viên thực hiện:</label>
                 <p><input id="studentName" value="@Model.student.name" readonly></p>
