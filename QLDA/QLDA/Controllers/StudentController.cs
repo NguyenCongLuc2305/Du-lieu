@@ -54,7 +54,8 @@ namespace QLDA.Controllers
     
         public JsonResult Delete(string studentId)
         {
-            return Json(new StudentBusinesslayer().Delete(studentId), JsonRequestBehavior.AllowGet);
+            bool isDeleted = new StudentBusinesslayer().Delete(studentId);
+            return Json(isDeleted, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Create()

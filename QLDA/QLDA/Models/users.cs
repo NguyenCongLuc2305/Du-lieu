@@ -6,8 +6,8 @@ namespace QLDA.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("User")]
-    public partial class User
+    [Table("users")]
+    public partial class users
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
@@ -18,7 +18,6 @@ namespace QLDA.Models
         [StringLength(50)]
         public string password { get; set; }
 
-        [StringLength(50)]
-        public string email { get; set; }
+
     }
 }

@@ -30,12 +30,13 @@ namespace QLDA.Businesslayer
                student student = db.students.SingleOrDefault(x => x.student_id == studentId);
                 db.students.Remove(student);
                 db.SaveChanges();
+                return true;
             }
             catch(Exception ex)
             {
                 return false;
             }
-            return true;
+            
         }
         public bool Update(student std)
         {
@@ -51,7 +52,7 @@ namespace QLDA.Businesslayer
                 refstudent.gender = std.gender;
                 refstudent.phone = std.phone;
                 refstudent._class = std._class;
-                refstudent.projects = std.projects;
+                
                 db.SaveChanges();
                 return true;
             }

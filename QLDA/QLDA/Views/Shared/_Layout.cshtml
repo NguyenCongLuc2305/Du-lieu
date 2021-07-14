@@ -21,7 +21,6 @@
     <link href="/assets/FontAwesome/css/all.css" rel="stylesheet">
 
 
-
 </head>
 
 <body>
@@ -35,60 +34,41 @@
 
     <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full"
          data-boxed-layout="full">
-
         <header class="topbar" data-navbarbg="skin6">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
+
                 <div class="navbar-header" data-logobg="skin5">
-
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
-                        <i class="ti-menu ti-close"></i>
-                    </a>
-
                     <div class="navbar-brand">
-                        <a href="index.html" class="logo">
+                        <a href="~/Student/Index" class="logo">
 
                             <b class="logo-icon">
-
-                                <img src="~/assets/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-
-                                <img src="~/assets/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                                <img style=" height: 55px; width: 50px;" src="~/Image/Logo_ICTU.png" />
                             </b>
 
                             <span class="logo-text">
-
-                                <img src="~/assets/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-
-                                <img src="~/assets/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                                <img style="height:160px;width:165px" src="~/Image/logo.png" />
                             </span>
                         </a>
                     </div>
 
-
                 </div>
+                <ul class="navbar-nav float-start me-auto">
+                </ul>
 
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
+                <ul class="navbar-nav float-end">
+                    <li>
+                        <a href="~/Login/Index" data-toggle="tooltip" data-placement="bottom"
+                           title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a>
+                    </li>
+                </ul>
 
-                    <ul class="navbar-nav float-start me-auto">
-                    </ul>
-
-                    <ul class="navbar-nav float-end">
-
-
-                        <li>
-                            <a href="/index.html" data-toggle="tooltip" data-placement="bottom"
-                               title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a>
-                        </li>
-
-
-                    </ul>
-                </div>
             </nav>
         </header>
 
         <aside class="left-sidebar" data-sidebarbg="skin5">
 
             <div class="scroll-sidebar">
-
+                <br /> <br /> <br /> <br />
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="sidebar-item">
@@ -125,12 +105,11 @@
             <div class="page-breadcrumb">
                 <div class="row">
 
-
-
                 </div>
             </div>
 
             <div class="container-fluid">
+                <br />  <br />
                 @RenderBody()
             </div>
 

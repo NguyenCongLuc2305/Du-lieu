@@ -46,6 +46,7 @@
 
     .active {
         background-color: #337AB7;
+        color: black;
     }
 </style>
 <div class="col-12">
@@ -89,7 +90,7 @@
                             <tr id="row_@item.teacher_id">
                                 <td>@item.teacher_id</td>
                                 <td>
-                                    @item.name
+                                    @item.name <br />
                                         <a><img src="@Url.Content(item.image)" width="50" height="35" /></a>
                                 </td>
                                 <td>@item.age.ToString("dd/MM/yyyy")</td>

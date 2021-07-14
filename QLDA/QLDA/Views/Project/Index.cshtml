@@ -44,6 +44,7 @@
 
     .active {
         background-color: #337AB7;
+        color: black;
     }
 </style>
 <div class="col-12">
@@ -108,44 +109,46 @@
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h4 class="modal-title" id="myModalLabel">Chi tiết sinh viên</h4>
+                                <h4 class="modal-title" id="myModalLabel">Chi tiết đồ án</h4>
                             </div>
                             <div class="modal-body">
-                                <ul>
-                                    <li for="project_id">Mã đồ án:</li>
-                                    <li id="project_id"></li>
-                                </ul>
+                                <table>
+                                    <tr>
+                                        <th for="project_id">Mã đồ án:</th>
+                                        <td id="project_id"></td>
+                                    </tr>
 
-                                <ul>
-                                    <li for="name">Tên đồ án:</li>
-                                    <li id="name"></li>
-                                </ul>
+                                    <tr>
+                                        <th for="name">Tên đồ án:</th>
+                                        <td id="name"></td>
+                                    </tr>
 
-                                <ul>
-                                    <li >Ngày băt đầu:</li>
-                                    <li id="start"></li>
-                                </ul>
+                                    <tr>
+                                        <th>Ngày băt đầu:</th>
+                                        <td id="start"></td>
+                                    </tr>
 
-                                <ul>
-                                    <li >Ngày băt đầu:</li>
-                                    <li id="end"></li>
-                                </ul>
-                                <ul>
-                                    <li >Mã giáo viên:</li>
-                                    <li id="teacher_id"></li>
-                                </ul>
-                                <ul>
-                                    <li >Mã sinh viên:</li>
-                                    <li id="student_id"></li>
-                                </ul>
-                                <ul>
-                                    <li >Giáo viên hướng dẫn:</li>
-                                    <li id="teacher_name"></li>
-                                </ul>
-                                <ul>
-                                    <li for="image">Sinh viên thực hiện:</li>
-                                    <li id="student_name"></li>
-                                </ul>
+                                    <tr>
+                                        <th>Ngày băt đầu:</th>
+                                        <td id="end"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mã giáo viên:</th>
+                                        <td id="teacher_id"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mã sinh viên:</th>
+                                        <td id="student_id"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Giáo viên hướng dẫn:</th>
+                                        <td id="teacherName"></td>
+                                    </tr>
+                                    <tr>
+                                        <th for="image">Sinh viên thực hiện:</th>
+                                        <td id="studentName"></td>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="modal-footer">
                                 <a href="#" type="button" class="btn btn-default" data-dismiss="modal">Đóng</a>
@@ -180,14 +183,14 @@
 
                 </div>
 
-                <input type="hidden" id="hiddenStudentId" />
+                <input type="hidden" id="projectId" />
 
             </div>
         
             <script>
 
-                var ConfirmDelete = function (StudentId) {
-                    $("#hiddenStudentId").val(StudentId);
+                var ConfirmDelete = function (ProjectId) {
+                    $("#projectId").val(ProjectId);
                     $("#myModal").modal('show');
                 }
 
@@ -195,17 +198,17 @@
 
                     $("#loaderDiv").show();
 
-                    var stdId = $("#hiddenStudentId").val();
+                    var proId = $("#projectId").val();
 
                     $.ajax({
 
                         type: "POST",
-                        url: "/Student/Delete",
-                        data: { StudentId: stdId },
+                        url: "/Project/Delete",
+                        data: { ProjectId: proId },
                         success: function (result) {
                             $("#loaderDiv").hide();
                             $("#myModal").modal("hide");
-                            $("#row_" + stdId).remove();
+                            $("#row_" + proId).remove();
 
                         }
 

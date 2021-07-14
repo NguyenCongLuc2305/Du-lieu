@@ -53,6 +53,7 @@ namespace QLDA.Businesslayer
             try
             {
                 project pro = db.projects.SingleOrDefault(x => x.project_id == ProjectId);
+
                 db.projects.Remove(pro);
                 db.SaveChanges();
             }
@@ -61,6 +62,18 @@ namespace QLDA.Businesslayer
                 return false;
             }
             return true;
+        }
+        public bool AddProject(project pro)
+        {
+            bool isExsit = db.projects.Any(x => x.student_id == pro.student_id);
+            if(isExsit)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

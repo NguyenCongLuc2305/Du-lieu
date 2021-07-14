@@ -5,47 +5,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    fieldset {
-        background-color: #eeeeee;
-        border: 1px solid;
-    }
-
     legend {
         background-color: gray;
         color: white;
-        padding: 5px 10px;
+        padding: 5px 5px 5px 30px;
     }
 
     input {
-        min-width: 200px;
+        min-width: 300px;
     }
 
     select {
-        min-width: 200px;
+        min-width: 300px;
     }
 
     fieldset {
         display: block;
-        margin-left: 70px;
-        margin-right: 2px;
         padding-top: 0.35em;
-        padding-bottom: 0.625em;
+        padding-bottom: 2em;
         padding-left: 2em;
-        padding-right: 0.75em;
-        border: 2px groove (internal value);
-        max-width: 700px;
+        padding-right: 2em;
+        border: 2px groove;
+        max-width: 900px;
+        height:500px;
+        left: 90px;
+        position: relative;
+        background-color: #eeeeee;
+        border: 1px solid;
     }
-    table, th, td {
-        border: 50px;
-      
-    }
+
     label {
-      
         position: relative;
         margin: 0;
         line-height: 20px;
+        padding-top: 15px;
     }
-    ​
+
     img {
         max-width: 150px;
     }
@@ -53,7 +48,12 @@
     input[type=file] {
         padding: 10px;
         background: #2d2d2d;
-      
+    }
+
+    .left-part {
+        position: absolute;
+        top: 0px;
+        right: -70px;
     }
 </style>
 <form action="/Student/Create" method="post" enctype="multipart/form-data">
@@ -62,57 +62,58 @@
     <fieldset>
 
         <legend>Thêm mới sinh viên:</legend>
-        <table style="border-inline:1px;">
-            <tr>
-                <td>
+        <div class="col-lg-12" style=" position: relative;">
+
+            <div class="col-lg-6">
+
+                <div>
 
                     <label>Mã sinh viên:</label>
                     <br>
                     <input type="text" required id="student_id" name="student_id">
                     <br>
 
-                </td>
-                <td>
+                </div>
+                <div>
                     <label>Tên:</label>
                     <br>
                     <input type="text" required id="name" name="name">
                     <br>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+
+
+                <div>
                     <label>Ngày sinh:</label>
                     <br>
                     <input type="date" required id="age" name="age">
-                </td>
-                <td>
+                </div>
+                <div>
+                    <label>Địa chỉ:</label><br>
+
+                    <input type="text" id="address" required name="address">
+
+                </div>
+                <div>
                     <br>
                     <label>Giới tính:</label>
                     <br>
                     <label class="light">Nam:</label>
                     <input type="radio" id="gender" required value="Nam" name="gender"><br />
-                    <label class="light">Nữ:</label>
+                    <label class="light">Nữ: &ensp;</label>
                     <input type="radio" id="gender" required value="Nữ" name="gender">
 
-                </td>
-            </tr>
-            <tr>
+                </div>
+            </div>
+            <div class="col-lg-6 left-part">
+                <div>
+                    <label>Email:</label><br />
+                    <input type="text" id="email" required name="email" />
+                </div>
 
-                <td>
-                    <label>Địa chỉ:</label><br>
 
-                    <input type="text" id="address" required name="address">
 
-                </td>
-                <td>
-                    <label>Email:</label>
-                    <input type="text" id="email" required name="email"/>
-                </td>
 
-            </tr>
-            <tr>
-
-                <td>
+                <div>
                     <label>Khoa:</label>
                     <br>
                     <select name="faculty" id="faculty" onchange="getFaculty();">
@@ -123,8 +124,7 @@
                         <option required value="QTVP">Quản trị văn phòng</option>
                     </select>
                     <br>
-                </td>
-                <td>
+
                     <label>Lớp:</label>
                     <br>
                     <select name="_class" id="_class">
@@ -132,28 +132,27 @@
                     </select>
                     <br>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Ảnh:</label>
-                    <br>
-                    <input required type='file' onchange="readURL(this);" name="ImageFile" id="ImageFile"/>
-                   <img id="blah" style="width:150px;height:150px" alt="your image" />
+                </div>
 
-                    <br>
-                </td>
-                <td>
+                <div>
                     <label>Số điện thoại:</label>
                     <br>
                     <input required type="text" id="phone" name="phone">
                     <br>
 
-                </td>
-            </tr>
-           
-        </table>
+                </div>
+                <div>
+                    <label>Ảnh:</label>
+                    <br>
+                    <input required type='file' onchange="readURL(this);" name="ImageFile" id="ImageFile" />
+                    <img id="blah" style="width:125px;height:125px" alt="your image" />
+
+                    <br>
+                </div>
+            </div>  
+        </div>
+  
     </fieldset>
 
-    <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 400px">Thêm</button>
+    <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 500px">Thêm</button>
 </form>

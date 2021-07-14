@@ -8,16 +8,19 @@ function getProjectbyID(proid) {
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
-            if (result.project_id != null) {
-                var myDate = new Date(973875600000);
+            if (result != null) {
+        
+                var start = new Date(parseInt(result.start.replace("/Date(", "").replace(")/", ""), 10));
+                var end = new Date(parseInt(result.end.replace("/Date(", "").replace(")/", ""), 10));
+
                 $("#project_id").html(result.project_id);
                 $("#name").html(result.name);
                 $("#teacher_id").html(result.teacher_id);
                 $("#student_id").html(result.student_id);
-                $('#teacherName').html(result.teacher.name);
                 $("#studentName").html(result.student.name);
-                $('#start').html(myDate.toLocaleDateString("Vietnam"));
-                $('#end').html(myDate.toLocaleDateString("Vietnam"));
+                $("#teacherName").html(result.teacher.name);
+                $('#start').html(start.toLocaleDateString("Vietnam"));
+                $('#end').html(end.toLocaleDateString("Vietnam"));
 
                 $('#detail').modal('show');
             }

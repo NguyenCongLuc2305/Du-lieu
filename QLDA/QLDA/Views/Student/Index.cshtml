@@ -11,7 +11,6 @@
         max-height: 31px;
         max-width: 35px;
     }
-
     .fas fa-trash {
         color: red;
     }
@@ -41,6 +40,7 @@
 
     .active {
         background-color: #337AB7;
+        color: black;
     }
 </style>
 <div class="col-12">
@@ -64,8 +64,8 @@
                         </div>
                     }
                     <a href="/Student/Create" type="button" class="btn btn-primary" style="margin-left:50px; padding:3.5px 0px 3.5px 0px;"> <i class="fas fa-user-plus"></i>Thêm mới sinh viên</a>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <caption>Danh sách sinh viên</caption>
                     <thead>
                         <tr>
@@ -83,19 +83,19 @@
                         <tr id="row_@item.student_id">
                             <td>@item.student_id</td>
                             <td>
-                                @item.name
-                                <a><img src="@Url.Content(item.image)" width="40" height="25" /></a>
+                                @item.name <br />
+                                <a><img src="@Url.Content(item.image)" width="50" height="35" /></a>
                             </td>
                             <td>@item.age.ToString("dd/MM/yyyy")</td>
                             <td>@item.phone</td>
                             <td>@item.faculty</td>
                             <td>@item._class</td>
-                            
+
                             <td>
 
                                 <button title='Xóa' class='btn btn-danger' onclick='ConfirmDelete("@item.student_id");'><i class='fas fa-trash'></i></button>
-                                
-                                <a href="/Student/Edit/@item.student_id" type="button" title="Sửa" class="btn btn-primary" style=" max-height: 31px; max-width: 35px;"><i class="fas fa-pen"></i></a> 
+
+                                <a href="/Student/Edit/@item.student_id" type="button" title="Sửa" class="btn btn-primary" style=" max-height: 31px; max-width: 35px;"><i class="fas fa-pen"></i></a>
 
                                 <button type='button' title='Chi tiết' data-toggle='modal' onclick='getbyID("@item.student_id");' class='btn btn-primary'><i class='fa fa-info-circle'></i></button>
 
@@ -176,7 +176,7 @@
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                                
                                 <h3 class="modal-title">Xóa sinh viên</h3>
                             </div>
                             <div class="modal-body">
@@ -197,11 +197,37 @@
                     </div>
 
                 </div>
+                <div class="modal fade" id="myModalerror">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
+                            <div class="modal-header">
+                                <i class="fa fa-exclamation-triangle"></i>
+                                <h2 class="modal-title">Lỗi</h2>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Không thể xóa sinh viên đang làm đồ án </h4>
+                                
+
+                                <div style="text-align:center;display:none" id="loaderDiv">
+                                    <img src="~/assets/assets/images/200.gif" style="height:200px;width:200px" />
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="btn btn-default" data-dismiss="modal">Đã hiểu</a>
+                               
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
                 <input type="hidden" id="hiddenStudentId" />
 
             </div>
-           
+          
             <script>
                 var ConfirmDelete = function (StudentId) {
                     $("#hiddenStudentId").val(StudentId);
@@ -222,9 +248,17 @@
                         success: function (result) {
                             $("#loaderDiv").hide();
                             $("#myModal").modal("hide");
-                            $("#row_" + stdId).remove();
+                            if (result) {
+                                $("#row_" + stdId).remove();
+                            }
+                            else {
+                                $("#myModalerror").modal("show");
+                                
+                            }
+                            
 
-                        }
+                        },
+                        
 
                     })
 

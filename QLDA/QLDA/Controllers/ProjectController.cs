@@ -7,10 +7,12 @@ using System.Web.Mvc;
 using PagedList;
 using QLDA.Businesslayer;
 using QLDA.Models;
+
 namespace QLDA.Controllers
 {
     public class ProjectController : Controller
     {
+        ProjectBusinesslayer project = new ProjectBusinesslayer();
         Model1 db = new Model1();
         // GET: Project
         public ActionResult Index(string SearchString, string currentFIlter, int? page)
@@ -30,26 +32,37 @@ namespace QLDA.Controllers
             else
             {
                 SearchString = currentFIlter;
-
             }
             ViewBag.currentFilter = SearchString;
             PageSize = 5;
             pageNumber = (page ?? 1);
             model = db.projects.ToList();
-
             return View(model.ToPagedList(pageNumber, PageSize));
         }
         public ActionResult Create()
         {
-            return View();
+  
+           project project = new project();
+            return View(project);
         }
-        [HttpPost]
 
+        [HttpPost]
         public ActionResult Create(project pro)
         {
-            db.projects.Add(pro);
-            db.SaveChanges();
+            bool isExist = project.AddProject(pro);
+
+            if(isExist)
+            {
+                return View("Create", pro);
+            }
+           else
+            {
+                db.projects.Add(pro);
+                 db.SaveChanges();
             return RedirectToAction("Index");
+            }
+           
+            
         }
     
         public JsonResult listNameTeacher(string q)
@@ -132,13 +145,7 @@ namespace QLDA.Controllers
         }
         public JsonResult Delete(string ProjectId)
         {
-            bool isDeleted = false;
-            isDeleted = new StudentBusinesslayer().Delete(ProjectId);
-            if (isDeleted)
-            {
-                return Json(isDeleted, JsonRequestBehavior.AllowGet);
-            }
-            return Json(isDeleted, JsonRequestBehavior.AllowGet);
+            return Json(new ProjectBusinesslayer().Delete(ProjectId), JsonRequestBehavior.AllowGet);
         }
   
     }

@@ -10,7 +10,7 @@ function getbyID(stdid) {
             if (result.student_id != null){
        
                 var myDate = new Date(973875600000);   
-
+                var age = new Date(parseInt(result.age.replace("/Date(", "").replace(")/", ""), 10));
                 $("#studentid").html(result.student_id);
                 $("#name").html(result.name);
                 $("#address").html(result.address);
@@ -20,7 +20,7 @@ function getbyID(stdid) {
                 $('#gender').html(result.gender);
                 $('#faculty').html(result.faculty);
                 $('#phone').html(result.phone);
-                $('#age').html(myDate.toLocaleDateString("Vietnam"));
+                $('#age').html(age.toLocaleDateString("Vietnam"));
    
 
                 $('#detail').modal('show'); 

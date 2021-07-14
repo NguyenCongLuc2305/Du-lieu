@@ -60,24 +60,30 @@
         <legend>Thêm mới đồ án</legend>
         <div class="col-lg-12" style=" position: relative;">
             <div class="col-lg-6">
-                <label>Mã đồ án:</label>
+                <div>
+                    <label>Mã đồ án:</label>
+                    <p>
+                        <input type="text" value="@Model.project_id" id="project_id" name="project_id" required />
+                    </p>
+                </div>
 
-                <p>
-                    <input type="text" id="project_id" name="project_id" required />
-                </p>
+                <div>
+                    <label>Tên đồ án:</label>
 
-                <label>Tên đồ án:</label>
+                    <p>
+                        <input type="text" value="@Model.name" id="name" name="name" required />
+                    </p>
+                </div>
+                <div>
 
-                <p>
-                    <input type="text" id="name" name="name" required />
-                </p>
+                    <label>Mã giáo viên</label><br />
+                    <p><input type="text" id="teacher_id" value="@Model.teacher_id" name="teacher_id" required /></p>
+                </div>
+                <div>
 
-                <label>Mã giáo viên</label><br />
-                <p><input type="text" id="teacher_id" name="teacher_id" required /></p>
-
-                <label>Mã sinh viên:</label><br>
-                <p> <input type="text" id="student_id" name="student_id" required /></p>
-               
+                    <label>Mã sinh viên:</label><br>
+                    <p> <input type="text" id="student_id" value="@Model.student_id" name="student_id" required /></p>
+                </div>
 
             </div>
             <div class="col-lg-6 left-part">
@@ -85,7 +91,7 @@
 
                 <label>Giáo viên hướng dẫn</label>
                 <p>
-                    <input id="teacherName" readonly>
+                    <input id ="teacherName" readonly>
                 </p>
                 <label>Sinh viên thực hiện:</label>
                 <p><input id="studentName" readonly></p>
@@ -93,11 +99,11 @@
                 <label>Ngày bắt đầu:</label>
 
                 <p>
-                    <input type="date" id="start" name="start" required />
+                    <input type="date" id="start" value="@Model.start" name="start" required />
                 </p>
 
                 <label>Ngày kết thúc:</label><br>
-                <p><input type="date" id="end" name="end" required /></p>
+                <p><input type="date" id="end" value="@Model.end" name="end" required /></p>
 
             </div>
         </div>

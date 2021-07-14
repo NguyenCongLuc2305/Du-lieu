@@ -4,19 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    fieldset {
-        background-color: #eeeeee;
-        border: 1px solid;
-    }
-
     legend {
         background-color: gray;
         color: white;
-        padding: 5px 10px;
+        padding: 5px 5px 5px 30px;
     }
 
     input {
-        min-width: 200px;
+        min-width: 300px;
     }
 
     select {
@@ -25,26 +20,25 @@
 
     fieldset {
         display: block;
-        margin-left: 70px;
-        margin-right: 2px;
         padding-top: 0.35em;
-        padding-bottom: 0.625em;
+        padding-bottom: 2em;
         padding-left: 2em;
-        padding-right: 0.75em;
-        border: 2px groove (internal value);
-        max-width: 700px;
-    }
-
-    table, th, td {
-        border: 50px;
+        padding-right: 2em;
+        border: 2px groove;
+        max-width: 900px;
+        height: 500px;
+        left: 90px;
+        position: relative;
+        background-color: #eeeeee;
+        border: 1px solid;
     }
 
     label {
         position: relative;
         margin: 0;
         line-height: 20px;
+        padding-top: 15px;
     }
-
 
     img {
         max-width: 150px;
@@ -55,80 +49,80 @@
         background: #2d2d2d;
     }
 
+    .left-part {
+        position: absolute;
+        top: 0px;
+        right: -70px;
+    }
 </style>
 <form action="/Student/Edit" method="post" enctype="multipart/form-data">
-
-
     <fieldset>
+        <legend>Sửa thông tin sinh viên:</legend>
+        <div class="col-lg-12" style=" position: relative;">
 
-        <legend>Sửa sinh viên:</legend>
-        <table style="border-inline:1px;">
-            <tr>
-                <td>
+            <div class="col-lg-6">
+
+                <div>
 
                     <label>Mã sinh viên:</label>
                     <br>
-                    <input type="text" readonly id="student_id" value="@Model.student_id" name="student_id">
+                    <input type="text" value="@Model.student_id" required id="student_id" name="student_id">
                     <br>
 
-                </td>
-                <td>
+                </div>
+                <div>
                     <label>Tên:</label>
                     <br>
-                    <input type="text" value="@Model.name" id="name" name="name">
+                    <input type="text" value="@Model.name" required id="name" name="name">
                     <br>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+
+
+                <div>
                     <label>Ngày sinh:</label>
                     <br>
-                    <input type="date" value="@Model.age.ToString("yyyy-MM-dd")" id="age" name="age">
-                </td>
-                <td>
+                    <input type="date" value="@Model.age.ToString("yyyy-MM-dd")" required id="age" name="age">
+                </div>
+                <div>
+                    <label>Địa chỉ:</label><br>
+
+                    <input type="text" id="address" value="@Model.address" required name="address">
+
+                </div>
+                <div>
                     <br>
                     <label>Giới tính:</label>
-                    <br>
+                    <br />
                     @{
                         if (Model.gender == "Nam")
                         {
-                            <label class="light">Nam:</label>
-                            <input type="radio" id="gender" checked value="Nam" name="gender"><br/>
-                            <label class="light">Nữ:</label>
+                         <label class="light">Nam:</label>
+                            <input type="radio" id="gender" checked value="Nam" name="gender"><br />
+                            <label class="light">Nữ:&ensp;&nbsp;</label>
                             <input type="radio" id="gender" value="Nữ" name="gender">
                         }
                         else if (Model.gender == "Nữ")
                         {
                             <label class="light">Nam:</label>
-                            <input type="radio" id="gender"  value="Nam" name="gender"><br/>
-                            <label class="light">Nữ:</label>
+                            <input type="radio" id="gender" value="Nam" name="gender"><br />
+                            <label class="light">Nữ: &ensp;&nbsp;</label>
                             <input type="radio" id="gender" checked value="Nữ" name="gender">
                         }
 
                     }
 
+                </div>
+            </div>
+            <div class="col-lg-6 left-part">
+                <div>
+                    <label>Email:</label><br />
+                    <input type="text" id="email" value="@Model.email" required name="email" />
+                </div>
 
-
-                </td>
-            </tr>
-            <tr>
-
-                <td>
-                    <label>Địa chỉ:</label><br>
-                    <input type="text" id="address" value="@Model.address" name="address">
-
-                </td>
-                <td>
-                    <label>Email:</label>
-                    <input type="text" id="email" value="@Model.email" name="email" />
-                </td>
-
-            </tr>
-            <tr>
-
-                <td>
+                <div>
                     <label>Khoa:</label>
-                    <br>@{
+                    <br>
+                    @{
                         if (@Model.faculty == "CNTT")
                         {
                             <select name="faculty" id="faculty" onchange="getFaculty();">
@@ -170,35 +164,34 @@
                             </select>
                         }
                     }
-                    <br>
-                </td>
-                <td>
+                    <br />
+
                     <label>Lớp:</label>
-                    <br>
+                    <br/>
                     <select name="_class" id="_class">
-                        <option value="@Model._class">@Model._class</option>s
+                        <option value="@Model._class">@Model._class</option>
                     </select>
                     <br>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Ảnh:</label>
-                    <br>
-                    <img id="blah" src="@Url.Content(Model.image)" style="width:150px;height:150px" alt="your image" />
-                    <br>
-                </td>
-                <td>
+                </div>
+
+                <div>
                     <label>Số điện thoại:</label>
                     <br>
                     <input type="text" value="@Model.phone" id="phone" name="phone">
                     <br>
 
-                </td>
-            </tr>
+                </div>
+                <div>
+                    <label>Ảnh:</label>
+                    <br>
+                    <img id="blah" src="@Url.Content(Model.image)" style="width:150px;height:150px"  />
 
-        </table>
+                    <br>
+                </div>
+            </div>
+        </div>
+
     </fieldset>
 
     <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 400px">Sửa</button>

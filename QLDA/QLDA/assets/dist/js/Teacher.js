@@ -8,6 +8,7 @@
         success: function (result) {
             if (result.teacher_id != null) {
                 var myDate = new Date(973875600000);
+                var age = new Date(parseInt(result.age.replace("/Date(", "").replace(")/", ""), 10));
                 $("#teacherid").html(result.teacher_id);
                 $("#name").html(result.name);
                 $("#address").html(result.address);
@@ -17,7 +18,7 @@
                 $('#phone').html(result.phone);
                 $('#subject').html(result.subject);
                 $('#education').html(result.education);
-                $('#age').html(myDate.toLocaleDateString("Vietnam"));
+                $('#age').html(age.toLocaleDateString("Vietnam"));
 
 
                 $('#detail').modal('show');

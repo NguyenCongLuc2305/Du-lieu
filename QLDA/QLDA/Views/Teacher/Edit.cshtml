@@ -5,45 +5,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    fieldset {
-        background-color: #eeeeee;
-        border: 1px solid;
-    }
-
     legend {
         background-color: gray;
         color: white;
-        padding: 5px 10px;
+        padding: 5px 5px 5px 30px;
     }
 
     input {
-        min-width: 200px;
+        min-width: 300px;
     }
 
     select {
-        min-width: 200px;
+        min-width: 300px;
     }
 
     fieldset {
         display: block;
-        margin-left: 70px;
-        margin-right: 2px;
         padding-top: 0.35em;
-        padding-bottom: 0.625em;
+        padding-bottom: 2em;
         padding-left: 2em;
-        padding-right: 0.75em;
-        border: 2px groove (internal value);
-        max-width: 700px;
-    }
-
-    table, th, td {
-        border: 50px;
+        padding-right: 2em;
+        border: 2px groove;
+        max-width: 900px;
+        height: 500px;
+        left: 90px;
+        position: relative;
+        background-color: #eeeeee;
+        border: 1px solid;
     }
 
     label {
         position: relative;
         margin: 0;
         line-height: 20px;
+        padding-top: 15px;
     }
 
     img {
@@ -54,42 +49,42 @@
         padding: 10px;
         background: #2d2d2d;
     }
+
+    .left-part {
+        position: absolute;
+        top: 0px;
+        right: -70px;
+    }
 </style>
 <form action="/Teacher/Edit" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend>Sửa giáo viên:</legend>
-        <table style="border-inline:1px;">
-            <tr>
-                <td>
+        <div class="col-lg-12" style=" position: relative;">
+            <div class="col-lg-6">
+                <div>
                     <label>Mã giáo viên:</label>
                     <br>
-                    <input type="text" value="@Model.teacher_id" id="teacher_id" name="teacher_id">
+                    <input type="text" id="teacher_id"  value="@Model.teacher_id" name="teacher_id" required />
                     <br>
-                </td>
-                <td>
+                </div>
+                <div>
                     <label>Tên:</label>
                     <br>
-                    <input type="text" value="@Model.name" id="name" name="name">
+                    <input type="text" id="name"  value="@Model.name" name="name" required />
                     <br>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+
+
+                <div>
                     <label>Ngày sinh:</label>
                     <br>
-                    <input type="date" value="@Model.age.ToString("yyyy-MM-dd")" id="age" name="age">
-                </td>
-                <td>
+                    <input type="date" id="age" value="@Model.age.ToString("yyyy-MM-dd")" name="age" required />
+                </div>
+                <div>
                     <label>Địa chỉ:</label><br>
-                    <input type="text" value="@Model.address" id="address" name="address">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Trình độ</label><br />
-                    <input type="text" value="@Model.education" id="education" name="education" />
-                </td>
-                <td>
+                    <input type="text" id="address" value="@Model.address" name="address" required />
+                </div>
+                <div>
                     <br>
                     <label>Giới tính:</label>
                     <br>
@@ -110,91 +105,105 @@
                         }
                     }
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Bộ môn</label><br />
-                    @{
-                        if (Model.subject == "CNPM")
-                        {
-                            <select name="faculty" id="faculty" onchange="getFaculty();">
-                                <option required value="">Chọn Bộ môn</option>
-                                <option value="CNPM" selected>Công nghệ phần mềm</option>
-                                <option value="MVATTT">Mạng và an toàn TT</option>
-                            </select>
+                </div>
+
+            </div>
+            <div class="col-lg-6 left-part">
+
+                <div>
+                    <label>Trình độ</label><br />
+                    <input type="text" id="education" value="@Model.education" name="education" required />
+                </div>
+
+                <div>
+
+                    <div>
+                        <label>Bộ môn</label><br />
+                        @{
+                            if (Model.subject == "CNPM")
+                            {
+                                <select name="subject" id="subject" onchange="getFaculty();">
+                                    <option required value="">Chọn Bộ môn</option>
+                                    <option value="CNPM" selected>Công nghệ phần mềm</option>
+                                    <option value="MVATTT">Mạng và an toàn TT</option>
+                                </select>
+                            }
+                            if (Model.subject == "MVATTT")
+                            {
+                                <select name="subject" id="subject" onchange="getFaculty();">
+                                    <option required value="">Chọn Bộ môn</option>
+                                    <option value="CNPM">Công nghệ phần mềm</option>
+                                    <option value="MVATTT" selected>Mạng và an toàn TT</option>
+                                </select>
+                            }
                         }
-                        if (Model.subject == "MVATTT")
-                        {
-                            <select name="faculty" id="faculty" onchange="getFaculty();">
-                                <option required value="">Chọn Bộ môn</option>
-                                <option value="CNPM">Công nghệ phần mềm</option>
-                                <option value="MVATTT" selected>Mạng và an toàn TT</option>
-                            </select>
+                    </div>
+                    <div>
+                        <label>Khoa:</label>
+                        <br>
+                        @{
+                            if (Model.faculty == "CNTT")
+                            {
+                                <select name="faculty" id="faculty" onchange="getFaculty();">
+                                    <option required value="">Chọn khoa</option>
+                                    <option value="CNTT" selected>Công nghệ thông tin</option>
+                                    <option value="TDH">Tự động hóa</option>
+                                    <option value="TTDPT">TT đa phương tiện</option>
+                                    <option value="QTVP">Quản trị văn phòng</option>
+                                </select>
+                            }
+                            if (Model.faculty == "TDH")
+                            {
+                                <select name="faculty" id="faculty" onchange="getFaculty();">
+                                    <option required value="">Chọn khoa</option>
+                                    <option value="TDH" selected>Tự động hóa</option>
+                                    <option value="CNTT">Công nghệ thông tin</option>
+                                    <option value="TTDPT">TT đa phương tiện</option>
+                                    <option value="QTVP">Quản trị văn phòng</option>
+                                </select>
+                            }
+                            if (Model.faculty == "TTDPT")
+                            {
+                                <select name="faculty" id="faculty" onchange="getFaculty();">
+                                    <option required value="">Chọn khoa</option>
+                                    <option value="TTDPT" selected>TT đa phương tiện</option>
+                                    <option value="TDH">Tự động hóa</option>
+                                    <option value="CNTT">Công nghệ thông tin</option>
+                                    <option value="QTVP">Quản trị văn phòng</option>
+                                </select>
+                            }
+                            if (Model.faculty == "QTVP")
+                            {
+                                <select name="faculty" id="faculty" onchange="getFaculty();">
+                                    <option required value="">Chọn khoa</option>
+                                    <option value="QTVP" selected>Quản trị văn phòng</option>
+                                    <option value="TDH">Tự động hóa</option>
+                                    <option value="CNTT">Công nghệ thông tin</option>
+                                    <option value="TTDPT">TT đa phương tiện</option>
+                                </select>
+                            }
                         }
-                    }
-                </td>
-                <td>
-                    <label>Khoa:</label>
-                    <br>
-                    @{
-                        if (Model.faculty == "CNTT")
-                        {
-                            <select name="faculty" id="faculty" onchange="getFaculty();">
-                                <option required value="">Chọn khoa</option>
-                                <option value="CNTT" selected>Công nghệ thông tin</option>
-                                <option value="TDH">Tự động hóa</option>
-                                <option value="TTDPT">TT đa phương tiện</option>
-                                <option value="QTVP">Quản trị văn phòng</option>
-                            </select>
-                        }
-                        if (Model.faculty == "TDH")
-                        {
-                            <select name="faculty" id="faculty" onchange="getFaculty();">
-                                <option required value="">Chọn khoa</option>
-                                <option value="TDH" selected>Tự động hóa</option>
-                                <option value="CNTT">Công nghệ thông tin</option>
-                                <option value="TTDPT">TT đa phương tiện</option>
-                                <option value="QTVP">Quản trị văn phòng</option>
-                            </select>
-                        }
-                        if (Model.faculty == "TTDPT")
-                        {
-                            <select name="faculty" id="faculty" onchange="getFaculty();">
-                                <option required value="">Chọn khoa</option>
-                                <option value="TTDPT" selected>TT đa phương tiện</option>
-                                <option value="TDH">Tự động hóa</option>
-                                <option value="CNTT">Công nghệ thông tin</option>
-                                <option value="QTVP">Quản trị văn phòng</option>
-                            </select>
-                        }
-                        if (Model.faculty == "QTVP")
-                        {
-                            <select name="faculty" id="faculty" onchange="getFaculty();">
-                                <option required value="">Chọn khoa</option>
-                                <option value="QTVP" selected>Quản trị văn phòng</option>
-                                <option value="TDH">Tự động hóa</option>
-                                <option value="CNTT">Công nghệ thông tin</option>
-                                <option value="TTDPT">TT đa phương tiện</option>
-                            </select>
-                        }
-                    }
-                    <br>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Ảnh:</label>
-                    <br>
-                    <img id="blah" src="@Url.Content(Model.image)" style="width:150px;height:150px" alt="your image" />
-                    <br>
-                </td>
-                <td>
-                    <label>Số điện thoại</label>
-                    <input type="text" value="@Model.phone" id="phone" name="phone" />
-                </td>
-            </tr>
-        </table>
+                        <br>
+                    </div>
+
+
+
+                    <div>
+                        <label>Số điện thoại</label>
+                        <br />
+                        <input type="text" value="@Model.phone" id="phone" name="phone" />
+                    </div>
+                    <div>
+                        <label>Ảnh:</label>
+                        <br>
+                        <img id="blah" src="@Url.Content(Model.image)" style="width:150px;height:150px" alt="your image" />
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </fieldset>
 
     <button type="submit" class="btn btn-primary" style="margin:15px 0px 0px 400px">Sửa</button>

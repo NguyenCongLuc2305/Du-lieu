@@ -49,7 +49,7 @@ namespace QLDA.Businesslayer
                 refteacher.faculty = tch.faculty;
                 refteacher.subject = tch.subject;
                 refteacher.education = tch.education;
-                refteacher.projects = tch.projects;
+              
                 db.SaveChanges();
                 return true;
             }

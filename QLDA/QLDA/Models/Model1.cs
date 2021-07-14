@@ -15,7 +15,7 @@ namespace QLDA.Models
         public virtual DbSet<project> projects { get; set; }
         public virtual DbSet<student> students { get; set; }
         public virtual DbSet<teacher> teachers { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<users> users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

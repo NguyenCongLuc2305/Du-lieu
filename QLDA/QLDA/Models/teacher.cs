@@ -11,12 +11,7 @@
     [Table("teacher")]
     public partial class teacher
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public teacher()
-        {
-            projects = new HashSet<project>();
-        }
-       
+
         [Key]
         [StringLength(50)]
         public string teacher_id { get; set; }
@@ -51,9 +46,6 @@
 
         [StringLength(50)]
         public string education { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<project> projects { get; set; }
 
        
     }

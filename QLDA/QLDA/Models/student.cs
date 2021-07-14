@@ -11,12 +11,6 @@
     [Table("student")]
     public partial class student
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public student()
-        {
-            projects = new HashSet<project>();
-        }
-
         [Required(ErrorMessage = "Bạn cần nhập mã sinh viên !!!")]
         [Key]
         [StringLength(50)]
@@ -69,7 +63,6 @@
         [StringLength(12)]
         public string phone { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<project> projects { get; set; }
+
     }
 }
